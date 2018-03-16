@@ -16,7 +16,7 @@ public class Application {
   public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
     return builder.routes()
       .route(r -> r.host("**")
-        .uri("http://springboot-demo-springboot-demoweb:8081")
+        .uri("http://masternodes-online-supplement-api-service:8081")
 //        .route(r -> r.host("**.abc.org").and().path("/image/png")
 //        .filters(f ->
 //          f.addResponseHeader("X-TestHeader", "foobar"))
