@@ -11,6 +11,8 @@ service:
   type: NodePort
   externalPort: 8080
   internalPort: 8080
+security:
+    adminPassword: admin
 #resources:
 #  limits:
 #    cpu: 100m
