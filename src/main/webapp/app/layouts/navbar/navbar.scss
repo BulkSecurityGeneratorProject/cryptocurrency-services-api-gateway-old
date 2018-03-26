@@ -3,7 +3,7 @@
 Navbar
 ========================================================================== */
 .navbar-version {
-    font-size: 10px;
+    font-size: 8px;
     color: #ccc
 }
 
@@ -54,6 +54,7 @@ Navbar
 }
 
 .navbar-title {
+    font-size: 30px;
     display: inline-block;
     vertical-align: middle;
 }
@@ -69,7 +70,7 @@ Logo styles
             width: 70px;
             display: inline-block;
             vertical-align: middle;
-            background: url("../../../content/images/logo-jhipster.png") no-repeat center center;
+            background: url("../../../content/images/logo-cs5.png") no-repeat center center;
             background-size: contain;
         }
     }
