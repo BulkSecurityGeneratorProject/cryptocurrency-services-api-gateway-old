@@ -1,0 +1,74 @@
+
+<div *ngIf="masternodesOnlineSupplementPublic">
+    <h2><span>Masternodes Online Supplement Public</span> {{masternodesOnlineSupplementPublic.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Coin</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.coin}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.price}}</span>
+        </dd>
+        <dt><span>Change</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.change}}</span>
+        </dd>
+        <dt><span>Volume</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.volume}}</span>
+        </dd>
+        <dt><span>Marketcap</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.marketcap}}</span>
+        </dd>
+        <dt><span>Roi Nodes</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.roiNodes}}</span>
+        </dd>
+        <dt><span>Number Required</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.numberRequired}}</span>
+        </dd>
+        <dt><span>Minimum Worth</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.minimumWorth}}</span>
+        </dd>
+        <dt><span>Github Page</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.githubPage}}</span>
+        </dd>
+        <dt><span>Github Commits</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.githubCommits}}</span>
+        </dd>
+        <dt><span>Github First Commit</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.githubFirstCommit | date:'medium'}}</span>
+        </dd>
+        <dt><span>Github Last Commit</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.githubLastCommit | date:'medium'}}</span>
+        </dd>
+        <dt><span>Notes</span></dt>
+        <dd>
+            <span>{{masternodesOnlineSupplementPublic.notes}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'masternodes-online-supplement-public/'+ masternodesOnlineSupplementPublic.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

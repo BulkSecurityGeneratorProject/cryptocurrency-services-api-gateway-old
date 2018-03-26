@@ -1,0 +1,95 @@
+<div>
+    <h2>
+        <span>Masternodes Online Supplements</span>
+        <button class="btn btn-primary float-right jh-create-entity create-masternodes-online-supplement" [routerLink]="['/', { outlets: { popup: ['masternodes-online-supplement-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Masternodes Online Supplement
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="masternodesOnlineSupplements">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="coin"><span>Coin</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="change"><span>Change</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="volume"><span>Volume</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="marketcap"><span>Marketcap</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="roiNodes"><span>Roi Nodes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numberRequired"><span>Number Required</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="minimumWorth"><span>Minimum Worth</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="githubPage"><span>Github Page</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="githubCommits"><span>Github Commits</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="githubFirstCommit"><span>Github First Commit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="githubLastCommit"><span>Github Last Commit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notes"><span>Notes</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let masternodesOnlineSupplement of masternodesOnlineSupplements ;trackBy: trackId">
+                <td><a [routerLink]="['../masternodes-online-supplement', masternodesOnlineSupplement.id ]">{{masternodesOnlineSupplement.id}}</a></td>
+                <td>{{masternodesOnlineSupplement.coin}}</td>
+                <td>{{masternodesOnlineSupplement.price}}</td>
+                <td>{{masternodesOnlineSupplement.change}}</td>
+                <td>{{masternodesOnlineSupplement.volume}}</td>
+                <td>{{masternodesOnlineSupplement.marketcap}}</td>
+                <td>{{masternodesOnlineSupplement.roiNodes}}</td>
+                <td>{{masternodesOnlineSupplement.numberRequired}}</td>
+                <td>{{masternodesOnlineSupplement.minimumWorth}}</td>
+                <td>{{masternodesOnlineSupplement.githubPage}}</td>
+                <td>{{masternodesOnlineSupplement.githubCommits}}</td>
+                <td>{{masternodesOnlineSupplement.githubFirstCommit | date:'medium'}}</td>
+                <td>{{masternodesOnlineSupplement.githubLastCommit | date:'medium'}}</td>
+                <td>{{masternodesOnlineSupplement.notes}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../masternodes-online-supplement', masternodesOnlineSupplement.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'masternodes-online-supplement/'+ masternodesOnlineSupplement.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'masternodes-online-supplement/'+ masternodesOnlineSupplement.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
