@@ -17,6 +17,7 @@ import { CryptocurrencyServicesApiGatewayAdminModule } from './admin/admin.modul
 import { CryptocurrencyServicesApiGatewayAccountModule } from './account/account.module';
 import { CryptocurrencyServicesApiGatewayEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { CryptocurrencyServicesApiGatewayAppMasternodesOnlineSupplementModule } from './masternodes-online-supplement/masternodes-online-supplement.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -37,6 +38,7 @@ import {
         CryptocurrencyServicesApiGatewayAdminModule,
         CryptocurrencyServicesApiGatewayAccountModule,
         CryptocurrencyServicesApiGatewayEntityModule,
+        CryptocurrencyServicesApiGatewayAppMasternodesOnlineSupplementModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

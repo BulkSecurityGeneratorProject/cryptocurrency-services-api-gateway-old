@@ -18,6 +18,31 @@
                     </span>
                 </a>
             </li>
+
+            <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="analysis-menu">
+                  <span *ngIf="!getImageUrl()">
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                    <span>
+                      Analysis
+                    </span>
+                  </span>
+                    <span *ngIf="getImageUrl()">
+                      <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
+                  </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+
+                    <li *ngSwitchCase="false">
+                        <a class="dropdown-item" routerLink="masternodes-online-supplement" (click)="collapseNavbar()" id="masternodes-online-supplement">
+                            <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>
+                            <span>masternodes.online Supplement</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">

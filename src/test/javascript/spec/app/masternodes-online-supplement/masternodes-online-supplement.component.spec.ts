@@ -1,0 +1,3 @@
+describe('MasternodesOnlineSupplementComponent Tests', () => {
+
+});
