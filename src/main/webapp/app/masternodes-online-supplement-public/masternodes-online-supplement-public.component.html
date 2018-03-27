@@ -1,12 +1,12 @@
 <div>
     <h2>
-        <span>Masternodes Online Supplement Publics</span>
-        <button class="btn btn-primary float-right jh-create-entity create-masternodes-online-supplement-public" [routerLink]="['/', { outlets: { popup: ['masternodes-online-supplement-public-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down" >
-            Create new Masternodes Online Supplement Public
-            </span>
-        </button>
+        <span>Masternodes Online Supplement</span>
+        <!--<button class="btn btn-primary float-right jh-create-entity create-masternodes-online-supplement-public" [routerLink]="['/', { outlets: { popup: ['masternodes-online-supplement-public-new'] } }]">-->
+            <!--<span class="fa fa-plus"></span>-->
+            <!--<span class="hidden-sm-down" >-->
+            <!--Create new Masternodes Online Supplement Public-->
+            <!--</span>-->
+        <!--</button>-->
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -29,7 +29,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <!--<th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>-->
             <th jhiSortBy="coin"><span>Coin</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="change"><span>Change</span> <span class="fa fa-sort"></span></th>
@@ -48,7 +48,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let masternodesOnlineSupplementPublic of masternodesOnlineSupplementPublics ;trackBy: trackId">
-                <td><a [routerLink]="['../masternodes-online-supplement-public', masternodesOnlineSupplementPublic.id ]">{{masternodesOnlineSupplementPublic.id}}</a></td>
+                <!--<td><a [routerLink]="['../masternodes-online-supplement-public', masternodesOnlineSupplementPublic.id ]">{{masternodesOnlineSupplementPublic.id}}</a></td>-->
                 <td>{{masternodesOnlineSupplementPublic.coin}}</td>
                 <td>{{masternodesOnlineSupplementPublic.price}}</td>
                 <td>{{masternodesOnlineSupplementPublic.change}}</td>
@@ -64,28 +64,28 @@
                 <td>{{masternodesOnlineSupplementPublic.notes}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../masternodes-online-supplement-public', masternodesOnlineSupplementPublic.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'masternodes-online-supplement-public/'+ masternodesOnlineSupplementPublic.id + '/edit'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'masternodes-online-supplement-public/'+ masternodesOnlineSupplementPublic.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
-                        </button>
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['../masternodes-online-supplement-public', masternodesOnlineSupplementPublic.id ]"-->
+                                <!--class="btn btn-info btn-sm">-->
+                            <!--<span class="fa fa-eye"></span>-->
+                            <!--<span class="d-none d-md-inline">View</span>-->
+                        <!--</button>-->
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['/', { outlets: { popup: 'masternodes-online-supplement-public/'+ masternodesOnlineSupplementPublic.id + '/edit'} }]"-->
+                                <!--replaceUrl="true"-->
+                                <!--queryParamsHandling="merge"-->
+                                <!--class="btn btn-primary btn-sm">-->
+                            <!--<span class="fa fa-pencil"></span>-->
+                            <!--<span class="d-none d-md-inline">Edit</span>-->
+                        <!--</button>-->
+                        <!--<button type="submit"-->
+                                <!--[routerLink]="['/', { outlets: { popup: 'masternodes-online-supplement-public/'+ masternodesOnlineSupplementPublic.id + '/delete'} }]"-->
+                                <!--replaceUrl="true"-->
+                                <!--queryParamsHandling="merge"-->
+                                <!--class="btn btn-danger btn-sm">-->
+                            <!--<span class="fa fa-remove"></span>-->
+                            <!--<span class="d-none d-md-inline">Delete</span>-->
+                        <!--</button>-->
                     </div>
                 </td>
             </tr>
