@@ -33,15 +33,15 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
 
-                    <li *ngSwitchCase="false">
-                        <a class="dropdown-item" routerLink="masternodes-online-supplement-public" (click)="collapseNavbar()" id="masternodes-online-supplement">
+                    <li>
+                        <a class="dropdown-item" routerLink="masternodes-online-supplement-public" (click)="collapseNavbar()" id="masternodes-online-supplement-public">
                             <i class="fa fa-server" aria-hidden="true"></i>
                             <span>Masternodes.online Supplement</span>
                         </a>
                     </li>
+
                 </ul>
             </li>
-
 
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

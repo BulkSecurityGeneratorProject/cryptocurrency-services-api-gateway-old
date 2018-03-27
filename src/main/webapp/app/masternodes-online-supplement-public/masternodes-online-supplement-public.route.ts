@@ -13,6 +13,15 @@ export const masternodesOnlineSupplementPublicRoute: Routes = [
         path: 'masternodes-online-supplement-public',
         component: MasternodesOnlineSupplementPublicComponent,
         data: {
+            authorities: [],
+            pageTitle: 'MasternodesOnlineSupplementPublics'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'masternodes-online-supplement-public',
+        component: MasternodesOnlineSupplementPublicComponent,
+        data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'MasternodesOnlineSupplementPublics'
         },
