@@ -38,7 +38,8 @@
             <th jhiSortBy="roiNodes"><span>Roi Nodes</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="numberRequired"><span>Number Required</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="minimumWorth"><span>Minimum Worth</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="githubPage"><span>Github Page</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="masternodesOnlineUrl"><span>Masternodes Online Url</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="githubUrl"><span>Github Url</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="githubCommits"><span>Github Commits</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="githubFirstCommit"><span>Github First Commit</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="githubLastCommit"><span>Github Last Commit</span> <span class="fa fa-sort"></span></th>
@@ -57,7 +58,16 @@
                 <td>{{masternodesOnlineSupplementPublic.roiNodes}}</td>
                 <td>{{masternodesOnlineSupplementPublic.numberRequired}}</td>
                 <td>{{masternodesOnlineSupplementPublic.minimumWorth}}</td>
-                <td>{{masternodesOnlineSupplementPublic.githubPage}}</td>
+                <td>
+                    <a href="{{masternodesOnlineSupplementPublic.masternodesOnlineUrl}}" target="_blank">
+                        {{masternodesOnlineSupplementPublic.masternodesOnlineUrl}}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{masternodesOnlineSupplementPublic.githubUrl}}" target="_blank">
+                        {{masternodesOnlineSupplementPublic.githubUrl}}
+                    </a>
+                </td>
                 <td>{{masternodesOnlineSupplementPublic.githubCommits}}</td>
                 <td>{{masternodesOnlineSupplementPublic.githubFirstCommit | date:'medium'}}</td>
                 <td>{{masternodesOnlineSupplementPublic.githubLastCommit | date:'medium'}}</td>
