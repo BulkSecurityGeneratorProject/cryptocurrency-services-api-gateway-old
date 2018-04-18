@@ -38,9 +38,14 @@
                 [(ngModel)]="masternodesOnlineSupplement.marketcap" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_roiNodes">Roi Nodes</label>
-            <input type="text" class="form-control" name="roiNodes" id="field_roiNodes"
-                [(ngModel)]="masternodesOnlineSupplement.roiNodes" />
+            <label class="form-control-label" for="field_roi">Roi</label>
+            <input type="text" class="form-control" name="roi" id="field_roi"
+                [(ngModel)]="masternodesOnlineSupplement.roi" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nodes">Nodes</label>
+            <input type="text" class="form-control" name="nodes" id="field_nodes"
+                [(ngModel)]="masternodesOnlineSupplement.nodes" />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_numberRequired">Number Required</label>
@@ -53,9 +58,19 @@
                 [(ngModel)]="masternodesOnlineSupplement.minimumWorth" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_githubPage">Github Page</label>
-            <input type="text" class="form-control" name="githubPage" id="field_githubPage"
-                [(ngModel)]="masternodesOnlineSupplement.githubPage" />
+            <label class="form-control-label" for="field_projectOrigin">Project Origin</label>
+            <input type="text" class="form-control" name="projectOrigin" id="field_projectOrigin"
+                [(ngModel)]="masternodesOnlineSupplement.projectOrigin" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_masternodesOnlineUrl">Masternodes Online Url</label>
+            <input type="text" class="form-control" name="masternodesOnlineUrl" id="field_masternodesOnlineUrl"
+                [(ngModel)]="masternodesOnlineSupplement.masternodesOnlineUrl" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_githubUrl">Github Url</label>
+            <input type="text" class="form-control" name="githubUrl" id="field_githubUrl"
+                [(ngModel)]="masternodesOnlineSupplement.githubUrl" />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_githubCommits">Github Commits</label>
