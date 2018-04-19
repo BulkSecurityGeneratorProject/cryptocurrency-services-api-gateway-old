@@ -43,8 +43,8 @@
             <th jhiSortBy="masternodesOnlineUrl"><span>Masternodes Online Url</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="githubUrl"><span>Github Url</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="githubCommits"><span>Github Commits</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="githubFirstCommit"><span>Github First Commit</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="githubLastCommit"><span>Github Last Commit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdAt"><span>Created At</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pushedAt"><span>Pushed At</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="notes"><span>Notes</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -65,8 +65,8 @@
                 <td>{{masternodesOnlineSupplement.masternodesOnlineUrl}}</td>
                 <td>{{masternodesOnlineSupplement.githubUrl}}</td>
                 <td>{{masternodesOnlineSupplement.githubCommits}}</td>
-                <td>{{masternodesOnlineSupplement.githubFirstCommit | date:'medium'}}</td>
-                <td>{{masternodesOnlineSupplement.githubLastCommit | date:'medium'}}</td>
+                <td>{{masternodesOnlineSupplement.createdAt | date:'medium'}}</td>
+                <td>{{masternodesOnlineSupplement.pushedAt | date:'medium'}}</td>
                 <td>{{masternodesOnlineSupplement.notes}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

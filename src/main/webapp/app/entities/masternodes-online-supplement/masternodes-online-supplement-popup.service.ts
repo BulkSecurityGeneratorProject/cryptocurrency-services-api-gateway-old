@@ -31,10 +31,10 @@ export class MasternodesOnlineSupplementPopupService {
                 this.masternodesOnlineSupplementService.find(id)
                     .subscribe((masternodesOnlineSupplementResponse: HttpResponse<MasternodesOnlineSupplement>) => {
                         const masternodesOnlineSupplement: MasternodesOnlineSupplement = masternodesOnlineSupplementResponse.body;
-                        masternodesOnlineSupplement.githubFirstCommit = this.datePipe
-                            .transform(masternodesOnlineSupplement.githubFirstCommit, 'yyyy-MM-ddTHH:mm:ss');
-                        masternodesOnlineSupplement.githubLastCommit = this.datePipe
-                            .transform(masternodesOnlineSupplement.githubLastCommit, 'yyyy-MM-ddTHH:mm:ss');
+                        masternodesOnlineSupplement.createdAt = this.datePipe
+                            .transform(masternodesOnlineSupplement.createdAt, 'yyyy-MM-ddTHH:mm:ss');
+                        masternodesOnlineSupplement.pushedAt = this.datePipe
+                            .transform(masternodesOnlineSupplement.pushedAt, 'yyyy-MM-ddTHH:mm:ss');
                         this.ngbModalRef = this.masternodesOnlineSupplementModalRef(component, masternodesOnlineSupplement);
                         resolve(this.ngbModalRef);
                     });

@@ -16,8 +16,8 @@ export class MasternodesOnlineSupplement implements BaseEntity {
         public masternodesOnlineUrl?: string,
         public githubUrl?: string,
         public githubCommits?: number,
-        public githubFirstCommit?: any,
-        public githubLastCommit?: any,
+        public createdAt?: any,
+        public pushedAt?: any,
         public notes?: string,
     ) {
     }

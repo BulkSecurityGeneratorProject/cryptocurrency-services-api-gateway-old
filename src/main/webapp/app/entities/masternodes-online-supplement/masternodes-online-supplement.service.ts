@@ -70,10 +70,10 @@ export class MasternodesOnlineSupplementService {
      */
     private convertItemFromServer(masternodesOnlineSupplement: MasternodesOnlineSupplement): MasternodesOnlineSupplement {
         const copy: MasternodesOnlineSupplement = Object.assign({}, masternodesOnlineSupplement);
-        copy.githubFirstCommit = this.dateUtils
-            .convertDateTimeFromServer(masternodesOnlineSupplement.githubFirstCommit);
-        copy.githubLastCommit = this.dateUtils
-            .convertDateTimeFromServer(masternodesOnlineSupplement.githubLastCommit);
+        copy.createdAt = this.dateUtils
+            .convertDateTimeFromServer(masternodesOnlineSupplement.createdAt);
+        copy.pushedAt = this.dateUtils
+            .convertDateTimeFromServer(masternodesOnlineSupplement.pushedAt);
         return copy;
     }
 
@@ -83,9 +83,9 @@ export class MasternodesOnlineSupplementService {
     private convert(masternodesOnlineSupplement: MasternodesOnlineSupplement): MasternodesOnlineSupplement {
         const copy: MasternodesOnlineSupplement = Object.assign({}, masternodesOnlineSupplement);
 
-        copy.githubFirstCommit = this.dateUtils.toDate(masternodesOnlineSupplement.githubFirstCommit);
+        copy.createdAt = this.dateUtils.toDate(masternodesOnlineSupplement.createdAt);
 
-        copy.githubLastCommit = this.dateUtils.toDate(masternodesOnlineSupplement.githubLastCommit);
+        copy.pushedAt = this.dateUtils.toDate(masternodesOnlineSupplement.pushedAt);
         return copy;
     }
 }
