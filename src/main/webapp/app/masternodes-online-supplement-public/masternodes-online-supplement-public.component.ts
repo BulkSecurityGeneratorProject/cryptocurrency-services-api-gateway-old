@@ -35,7 +35,8 @@ export class MasternodesOnlineSupplementPublicComponent implements OnInit, OnDes
         private principal: Principal
     ) {
         this.masternodesOnlineSupplementPublics = [];
-        this.itemsPerPage = ITEMS_PER_PAGE;
+        // this.itemsPerPage = ITEMS_PER_PAGE;
+        this.itemsPerPage = 1000;
         this.page = 0;
         this.links = {
             last: 0
