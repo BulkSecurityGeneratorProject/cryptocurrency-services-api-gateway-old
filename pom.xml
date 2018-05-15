@@ -72,7 +72,7 @@
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
 
         <!-- jhipster-needle-maven-property -->
-        <docker.repo>gcr.io/cryptocurrencyservices-197520</docker.repo>
+        <docker.repo>minikube</docker.repo>
 
     </properties>
 

@@ -62,8 +62,16 @@
                 <td>{{masternodesOnlineSupplement.numberRequired}}</td>
                 <td>{{masternodesOnlineSupplement.minimumWorth}}</td>
                 <td>{{masternodesOnlineSupplement.projectOrigin}}</td>
-                <td>{{masternodesOnlineSupplement.masternodesOnlineUrl}}</td>
-                <td>{{masternodesOnlineSupplement.githubUrl}}</td>
+                <td>
+                    <a href="{{masternodesOnlineSupplement.masternodesOnlineUrl}}" target="_blank">
+                        Profile
+                    </a>
+                </td>
+                <td>
+                    <a href="{{masternodesOnlineSupplement.githubUrl}}" target="_blank">
+                        github
+                    </a>
+                </td>
                 <td>{{masternodesOnlineSupplement.githubCommits}}</td>
                 <td>{{masternodesOnlineSupplement.createdAt | date:'medium'}}</td>
                 <td>{{masternodesOnlineSupplement.pushedAt | date:'medium'}}</td>

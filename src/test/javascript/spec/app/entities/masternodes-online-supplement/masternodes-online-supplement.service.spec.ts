@@ -34,7 +34,8 @@ describe('Service Tests', () => {
 
                 const req  = httpMock.expectOne({ method: 'GET' });
 
-                const resourceUrl = SERVER_API_URL + '/masternodesonlinesupplementapi/api/masternodes-online-supplements';
+                // const resourceUrl = SERVER_API_URL + '/masternodesonlinesupplementapi/api/masternodes-online-supplements';
+                const resourceUrl = SERVER_API_URL + 'masternodesonlinesupplementapi/api/masternodes-online-supplements';
                 expect(req.request.url).toEqual(resourceUrl + '/' + '123');
             });
             it('should return MasternodesOnlineSupplement', () => {

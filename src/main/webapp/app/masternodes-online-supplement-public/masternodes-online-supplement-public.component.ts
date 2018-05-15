@@ -6,7 +6,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { MasternodesOnlineSupplementPublic } from './masternodes-online-supplement-public.model';
 import { MasternodesOnlineSupplementPublicService } from './masternodes-online-supplement-public.service';
-import { ITEMS_PER_PAGE, Principal } from '../shared/index';
+// import { ITEMS_PER_PAGE, Principal } from '../shared/index';
 
 @Component({
     selector: 'jhi-masternodes-online-supplement-public',
@@ -32,7 +32,7 @@ export class MasternodesOnlineSupplementPublicComponent implements OnInit, OnDes
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
-        private principal: Principal
+        // private principal: Principal
     ) {
         this.masternodesOnlineSupplementPublics = [];
         // this.itemsPerPage = ITEMS_PER_PAGE;
@@ -109,9 +109,9 @@ export class MasternodesOnlineSupplementPublicComponent implements OnInit, OnDes
     }
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then((account) => {
-            this.currentAccount = account;
-        });
+        // this.principal.identity().then((account) => {
+        //     this.currentAccount = account;
+        // });
         this.registerChangeInMasternodesOnlineSupplementPublics();
     }
 
