@@ -1,16 +1,8 @@
 #!/bin/bash
 
 
-eval $(minikube docker-env)
+kubectl create namespace cryptocurrency-services
 
-#mvn package
-#
-#cd target/
-#
-#docker build -t minikube/cryptocurrency-services-api-gateway:0.1.0 .
-#
-#cd ..
+#helm --namespace cryptocurrency-services install -n cryptocurrency-services-api-gateway helm-charts/gateway
 
-./mvnw verify -Pprod dockerfile:build
-
-helm install -n cryptocurrency-services-api-gateway helm-charts/gateway
+helm --namespace default install -n cryptocurrency-services-api-gateway helm-charts/gateway
