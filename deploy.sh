@@ -3,7 +3,12 @@
 
 #./undeploy.sh
 
-kubectl create namespace cryptocurrency-services
+#kubectl --namespace cryptocurrency-services delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api
+
+kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api
+
+
+c
 
 #helm --namespace cryptocurrency-services install -n cryptocurrency-services-api-gateway helm-charts/gateway
 

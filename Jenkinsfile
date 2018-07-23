@@ -8,6 +8,16 @@ pipeline {
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     }
     stages {
+
+      stage('deploy') {
+        steps {
+          container('maven') {
+            sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
+            sh "helm --namespace default install -n cryptocurrency-services-api-gateway helm-charts/gateway"
+          }
+        }
+      }
+
       stage('CI Build and push snapshot') {
         when {
           branch 'PR-*'
@@ -89,8 +99,8 @@ pipeline {
             cleanWs()
         }
         failure {
-            input """Pipeline failed. 
-We will keep the build pod around to help you diagnose any failures. 
+            input """Pipeline failed.
+We will keep the build pod around to help you diagnose any failures.
 
 Select Proceed or Abort to terminate the build pod"""
         }
