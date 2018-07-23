@@ -12,8 +12,8 @@ pipeline {
       stage('deploy') {
         steps {
           container('maven') {
+            sh "./mvnw verify -Pprod dockerfile:build"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
-            sh "helm --namespace default install -n cryptocurrency-services-api-gateway helm-charts/gateway"
           }
         }
       }
