@@ -196,6 +196,9 @@ concat_lines() {
 }
 
 BASE_DIR=`find_maven_basedir "$(pwd)"`
+
+echo "BASE_DIR: ${BASE_DIR}"
+
 if [ -z "$BASE_DIR" ]; then
   exit 1;
 fi
