@@ -619,7 +619,7 @@
                 </executions>
             </plugin>
             <!-- jhipster-needle-maven-add-plugin -->
-        
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
@@ -1056,4 +1056,12 @@
         </profile>
         <!-- jhipster-needle-maven-add-profile -->
     </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://35.232.52.50:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
