@@ -12,7 +12,7 @@ pipeline {
       stage('deploy') {
         steps {
           container('maven') {
-            sh "mkdir ~/.m2"
+            sh "# mkdir ~/.m2"
             sh "pwd"
             sh "whoami"
             sh "mvn -N io.takari:maven:wrapper"
