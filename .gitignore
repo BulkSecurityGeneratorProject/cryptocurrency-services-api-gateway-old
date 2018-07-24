@@ -147,4 +147,5 @@ Desktop.ini
 # JHipster
 ######################
 .yo-rc.json
-.mvn
+.mvn/wrapper
+#.mvn
