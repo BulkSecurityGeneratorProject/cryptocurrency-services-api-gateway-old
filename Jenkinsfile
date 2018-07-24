@@ -15,7 +15,7 @@ pipeline {
             sh "# mkdir ~/.m2"
             sh "pwd"
             sh "whoami"
-            sh "mvn -N io.takari:maven:wrapper"
+            sh "# mvn -N io.takari:maven:wrapper"
             sh "./mvnw verify -Pprod dockerfile:build"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
