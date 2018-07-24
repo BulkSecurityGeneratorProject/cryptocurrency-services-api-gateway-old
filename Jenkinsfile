@@ -13,7 +13,7 @@ pipeline {
         steps {
           container('maven') {
             sh "mkdir ~/.m2"
-            sh "chmod 777 ~/.m2
+            sh "chmod 777 ~/.m2"
             sh "pwd"
             sh "whoami"
             sh "ls -al"
