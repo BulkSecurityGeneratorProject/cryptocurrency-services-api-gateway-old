@@ -17,10 +17,11 @@ pipeline {
             sh "pwd"
             sh "whoami"
             sh "ls -al"
+            sh "ls -al /host-home/.m2"
             sh "# mvn -s settings-custom.xml -N io.takari:maven:wrapper"
             sh "# ls -al"
-            sh "# ./mvnw verify -Pprod dockerfile:build"
-            sh "mvn -s settings-custom.xml install"
+            sh " ./mvnw verify -Pprod dockerfile:build"
+            sh "# mvn -s settings-custom.xml install"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
         }
