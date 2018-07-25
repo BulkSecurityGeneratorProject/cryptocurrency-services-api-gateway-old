@@ -20,7 +20,7 @@ pipeline {
             sh "# mvn -s settings-custom.xml -N io.takari:maven:wrapper"
             sh "# ls -al"
             sh "# ./mvnw verify -Pprod dockerfile:build"
-            sh "mvn install"
+            sh "mvn -s settings-custom.xml install"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
         }
