@@ -98,6 +98,8 @@ if [ -z "$M2_HOME" ] ; then
   # echo Using m2 at $M2_HOME
 fi
 
+echo "M2_HOME: ${M2_HOME}"
+
 # For Cygwin, ensure paths are in UNIX format before anything is touched
 if $cygwin ; then
   [ -n "$M2_HOME" ] &&
