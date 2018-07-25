@@ -12,8 +12,8 @@ pipeline {
       stage('deploy') {
         steps {
           container('maven') {
-            sh "mkdir -p /root/.m2"
-            sh "chmod 777 /root/.m2"
+            sh "# mkdir -p /root/.m2"
+            sh "# chmod 777 /root/.m2"
             sh "pwd"
             sh "whoami"
             sh "ls -al"
