@@ -11,7 +11,7 @@ pipeline {
 
       stage('deploy') {
         steps {
-          container('jnlp') {
+          container('maven') {
             sh "# mkdir -p /root/.m2"
             sh "# chmod 777 /root/.m2"
             sh "pwd"
