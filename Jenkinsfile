@@ -14,6 +14,7 @@ pipeline {
           container('maven') {
             sh "pwd"
             sh "whoami"
+            sh "yarn install"
             sh "mvn -Pprod install"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
