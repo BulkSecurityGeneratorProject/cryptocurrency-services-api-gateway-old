@@ -20,7 +20,7 @@ pipeline {
             sh "yum install -y yarn"
             sh "yarn install"
             sh "ls -al"
-            sh "mvn -X -Pprod install"
+            sh "mvn -X -Pdev package"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
         }
