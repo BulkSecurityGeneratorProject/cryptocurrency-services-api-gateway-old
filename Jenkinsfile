@@ -14,7 +14,7 @@ pipeline {
           container('maven') {
             sh "pwd"
             sh "whoami"
-            sh "mvn -s settings-custom.xml install"
+            sh "mvn -Pprod install"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
         }
