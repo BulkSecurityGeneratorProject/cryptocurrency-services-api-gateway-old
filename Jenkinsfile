@@ -14,7 +14,7 @@ pipeline {
           container('maven') {
             sh "pwd"
             sh "whoami"
-            sh "curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -"
+            sh "curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -"
             sh "yum install -y nodejs"
             sh "curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo"
             sh "yum install -y yarn"
