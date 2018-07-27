@@ -1,6 +1,6 @@
 pipeline {
     agent {
-      label "jenkins-nodejs"
+      label "jenkins-maven"
     }
     environment {
       ORG               = 'kevinstl'
@@ -11,7 +11,7 @@ pipeline {
 
       stage('deploy') {
         steps {
-          container('nodejs') {
+          container('maven') {
             sh "# mkdir -p /root/.m2"
             sh "# chmod 777 /root/.m2"
             sh "pwd"
@@ -22,8 +22,8 @@ pipeline {
             sh "# mvn -s settings-custom.xml -N io.takari:maven:wrapper"
             sh "# ls -al /root/.m2"
             sh "# ls -al /root/.m2/wrapper"
-            sh "./mvnw -Pprod dockerfile:build"
-            sh "# mvn -s settings-custom.xml install"
+            sh "# ./mvnw -Pprod dockerfile:build"
+            sh "mvn -s settings-custom.xml install"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
         }
