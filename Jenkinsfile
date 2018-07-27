@@ -1,6 +1,6 @@
 pipeline {
     agent {
-      label "jenkins-jx-base"
+      label "jenkins-maven"
     }
     environment {
       ORG               = 'kevinstl'
@@ -11,7 +11,7 @@ pipeline {
 
       stage('deploy') {
         steps {
-          container('jx-base') {
+          container('jnlp') {
             sh "# mkdir -p /root/.m2"
             sh "# chmod 777 /root/.m2"
             sh "pwd"
