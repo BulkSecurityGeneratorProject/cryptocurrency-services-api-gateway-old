@@ -162,6 +162,8 @@ if [ -z "$JAVA_HOME" ] ; then
   echo "Warning: JAVA_HOME environment variable is not set."
 fi
 
+echo "JAVA_HOME: ${JAVA_HOME}"
+
 CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher
 
 # traverses directory structure from process work directory to filesystem root
@@ -198,6 +200,7 @@ concat_lines() {
 }
 
 BASE_DIR=`find_maven_basedir "$(pwd)"`
+
 
 echo "BASE_DIR: ${BASE_DIR}"
 

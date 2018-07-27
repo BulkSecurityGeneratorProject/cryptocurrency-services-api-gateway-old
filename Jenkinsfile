@@ -11,7 +11,7 @@ pipeline {
 
       stage('deploy') {
         steps {
-          container('maven') {
+          container('jx-base') {
             sh "# mkdir -p /root/.m2"
             sh "# chmod 777 /root/.m2"
             sh "pwd"
@@ -19,7 +19,7 @@ pipeline {
             sh "# this will not work, receive: cannot create regular file '/root/.m2/settings.xml': Read-only file system. cp settings-custom.xml /root/.m2/settings.xml"
             sh "ls -al"
             sh "ls -al /root/.m2"
-            sh "mvn -s settings-custom.xml -N io.takari:maven:wrapper"
+            sh "# mvn -s settings-custom.xml -N io.takari:maven:wrapper"
             sh "ls -al /root/.m2"
             sh "ls -al /root/.m2/wrapper"
             sh "./mvnw -Pprod dockerfile:build"
