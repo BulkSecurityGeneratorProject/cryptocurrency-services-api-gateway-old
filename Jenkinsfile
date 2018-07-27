@@ -1,6 +1,6 @@
 pipeline {
     agent {
-      label "jenkins-maven"
+      label "jenkins-nodejs"
     }
     environment {
       ORG               = 'kevinstl'
@@ -11,7 +11,7 @@ pipeline {
 
       stage('deploy') {
         steps {
-          container('maven') {
+          container('nodejs') {
             sh "# mkdir -p /root/.m2"
             sh "# chmod 777 /root/.m2"
             sh "pwd"
