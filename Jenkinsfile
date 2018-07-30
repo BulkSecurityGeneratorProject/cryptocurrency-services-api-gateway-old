@@ -20,7 +20,7 @@ pipeline {
             sh "yum install -y yarn"
             sh "yarn install"
             sh "ls -al"
-            sh "mvn -Pdev -s ./.mvn/settings-custom.xml verify dockerfile:build"
+            sh "mvn -Pprod -s ./.mvn/settings-custom.xml verify dockerfile:build"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
         }
