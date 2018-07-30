@@ -5,7 +5,7 @@ replicaCount: 1
 image:
 #  repository: gcr.io/cryptocurrencyservices-197520/cryptocurrency-services-api-gateway
   repository: minikube/cryptocurrency-services-api-gateway
-  tag: 0.1.0
+  tag: 0.1.1aa
 #  pullPolicy: Always
   pullPolicy: Never
 service:
