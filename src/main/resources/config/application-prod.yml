@@ -34,7 +34,8 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+#            uri: mongodb://localhost:27017
+            uri: mongodb://gateway-db-mongodb.default.svc.cluster.local:27017
             database: CryptocurrencyServicesApiGateway
         elasticsearch:
             cluster-name:
