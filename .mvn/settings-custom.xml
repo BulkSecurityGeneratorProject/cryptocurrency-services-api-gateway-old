@@ -4,7 +4,7 @@
 
       <!--<localRepository>/home/jenkins/.m2/repository</localRepository>-->
 
-      <!--<localRepository>/host-home/.m2/repository</localRepository>-->
+      <localRepository>/host-home/.m2/repository</localRepository>
 
       <!-- lets disable the download progress indicator that fills up logs -->
       <interactiveMode>false</interactiveMode>
