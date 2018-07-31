@@ -651,6 +651,7 @@
                                         <artifactId>frontend-maven-plugin</artifactId>
                                         <versionRange>${frontend-maven-plugin.version}</versionRange>
                                         <goals>
+                                            <goal>install-node-and-npm</goal>
                                             <goal>install-node-and-yarn</goal>
                                             <goal>yarn</goal>
                                         </goals>
