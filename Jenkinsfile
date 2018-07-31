@@ -12,10 +12,10 @@ pipeline {
       stage('deploy') {
         steps {
           container('maven') {
-            sh "pwd"
-            sh "whoami"
-            sh "curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -"
-            sh "yum install -y nodejs"
+            //sh "pwd"
+            //sh "whoami"
+            //sh "curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -"
+            //sh "yum install -y nodejs"
             //sh "curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo"
             //sh "yum install -y yarn"
             //sh "yarn install"
@@ -23,7 +23,7 @@ pipeline {
             //sh "n 8.10.0"
             //sh "npm install -g npm@5.10.0"
             //sh "npm install -g yarn@1.5.1"
-            sh "ls -al"
+            //sh "ls -al"
             sh "mvn -e -Pprod -DskipTests -s ./.mvn/settings-custom.xml clean verify dockerfile:build"
             sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
           }
