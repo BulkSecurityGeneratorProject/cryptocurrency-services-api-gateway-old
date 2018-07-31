@@ -35,7 +35,8 @@ spring:
     data:
         mongodb:
 #            uri: mongodb://localhost:27017
-            uri: mongodb://gateway-db-mongodb.default.svc.cluster.local:27017
+#            uri: mongodb://gateway-db-mongodb.default.svc.cluster.local:27017
+            uri: mongodb://${MONGO_HOST}:${MONGO_PORT}
             database: CryptocurrencyServicesApiGateway
         elasticsearch:
             cluster-name:

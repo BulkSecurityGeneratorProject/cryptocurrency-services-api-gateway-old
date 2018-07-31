@@ -24,8 +24,9 @@ pipeline {
             //sh "npm install -g npm@5.10.0"
             //sh "npm install -g yarn@1.5.1"
             //sh "ls -al"
-            sh "mvn -e -Pprod -DskipTests -s ./.mvn/settings-custom.xml clean verify dockerfile:build"
-            sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
+            //sh "mvn -e -Pprod -DskipTests -s /host-home/.m2/settings.xml clean verify dockerfile:build"
+            //sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
+            sh "./build-deploy.sh container prod
           }
         }
       }

@@ -33,8 +33,10 @@ spring:
 #            port: 0
 #            host: minikube-easy
 #            port: 30017
-            host: gateway-db-mongodb.default.svc.cluster.local
-            port: 27017
+#            host: gateway-db-mongodb.default.svc.cluster.local
+#            port: 27017
+            host: ${MONGO_HOST_TEST}
+            port: ${MONGO_PORT_TEST}
             database: CryptocurrencyServicesApiGateway
         elasticsearch:
             cluster-name:

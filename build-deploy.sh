@@ -1,8 +1,8 @@
 #!/bin/bash
 
+buildEnv=$1
+mavenProfile=$2
 
-eval $(minikube docker-env)
-
-./mvnw verify -Pprod dockerfile:build
+./build.sh ${buildEnv} ${mavenProfile}
 
 ./deploy.sh
