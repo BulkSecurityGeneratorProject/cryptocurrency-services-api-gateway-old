@@ -27,6 +27,12 @@ pipeline {
             //sh "mvn -e -Pprod -DskipTests -s /host-home/.m2/settings.xml clean verify dockerfile:build"
             //sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
             sh "./build-deploy.sh container prod"
+
+            sh "git config remote.origin.url https://github.com/kevinstl/cryptocurrency-services-api-gateway.git"
+            sh "git config --global credential.helper store"
+            sh "jx step git credentials"
+            sh "git push origin HEAD"
+
           }
         }
       }

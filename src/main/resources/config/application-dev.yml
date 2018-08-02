@@ -25,6 +25,7 @@ eureka:
     client:
         service-url:
             defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+#            defaultZone: http://admin:${jhipster.registry.password}@${EUREKA_HOST}:${EUREKA_PORT}/eureka/
 
 spring:
     profiles:
@@ -39,9 +40,10 @@ spring:
         serialization.indent_output: true
     data:
         mongodb:
-#            uri: mongodb://localhost:27017
+            uri: mongodb://localhost:27017
 #            uri: mongodb://gateway-db-mongodb.default.svc.cluster.local:27017
-            uri: mongodb://${MONGO_HOST}:${MONGO_PORT}
+#            uri: mongodb://${MONGO_HOST}:${MONGO_PORT}
+#            uri: mongodb://minikube-easy:30017
             database: CryptocurrencyServicesApiGateway
         elasticsearch:
             cluster-name:
