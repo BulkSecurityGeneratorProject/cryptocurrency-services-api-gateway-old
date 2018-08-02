@@ -20,7 +20,7 @@ case ${buildEnv} in
         export MONGO_HOST="gateway-db-mongodb.default.svc.cluster.local"
         export MONGO_PORT="27017"
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
-        mvn -e -P${mavenProfile} ${env.SETTINGS_XML} -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
+        mvn -e -P${mavenProfile} ${SETTINGS_XML} -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
         ;;
 esac
 
