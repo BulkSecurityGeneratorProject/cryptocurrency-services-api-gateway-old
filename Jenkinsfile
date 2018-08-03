@@ -28,6 +28,7 @@ pipeline {
             //sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
 
             sh "./build-deploy.sh container prod"
+            sh "[[ $? -ne 0 ]] && exit"
 
 
           }
