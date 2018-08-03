@@ -24,7 +24,12 @@ case ${buildEnv} in
         ;;
 esac
 
-
+if [ $? -eq 0 ]
+then
+  echo "Build Success"
+else
+  echo "Build Error" >&2
+fi
 
 
 
