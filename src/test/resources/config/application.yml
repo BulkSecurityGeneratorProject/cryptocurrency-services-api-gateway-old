@@ -37,7 +37,8 @@ spring:
 #            port: 27017
             host: ${MONGO_PROD_TEST_USER_PASS}${MONGO_HOST_TEST}
             port: ${MONGO_PORT_TEST}
-            database: CryptocurrencyServicesApiGateway
+#            database: CryptocurrencyServicesApiGateway
+            database: ${MONGO_DATABASE_TEST}
         elasticsearch:
             cluster-name:
             cluster-nodes:
