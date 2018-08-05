@@ -6,7 +6,7 @@ pipeline {
       ORG               = 'kevinstl'
       APP_NAME          = 'cryptocurrency-services-api-gateway'
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-      VAR_MONGO_PROD_TEST_USER_PASS = $MONGO_PROD_TEST_USER_PASS
+      VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
     }
     stages {
 
