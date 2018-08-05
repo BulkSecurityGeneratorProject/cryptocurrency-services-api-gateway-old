@@ -8,6 +8,7 @@ mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
 mongoDatabase="CryptocurrencyServicesApiGateway"
 
+echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
 
 if [ ${KUBE_ENV} == "" ]
 then
@@ -42,7 +43,6 @@ case ${buildEnv} in
         ;;
 esac
 
-echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
 echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
 echo "MONGO_HOST_TEST: ${MONGO_HOST_TEST}"
 

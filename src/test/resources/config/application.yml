@@ -35,7 +35,8 @@ spring:
 #            port: 30017
 #            host: gateway-db-mongodb.default.svc.cluster.local
 #            port: 27017
-            host: ${MONGO_PROD_TEST_USER_PASS}${MONGO_HOST_TEST}
+#            host: ${MONGO_PROD_TEST_USER_PASS}${MONGO_HOST_TEST}
+            host: test-user:password123@ds113122.mlab.com
             port: ${MONGO_PORT_TEST}
 #            database: CryptocurrencyServicesApiGateway
             database: ${MONGO_DATABASE_TEST}
