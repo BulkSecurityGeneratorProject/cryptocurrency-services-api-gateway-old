@@ -7,6 +7,11 @@ mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
 mongoDatabase="CryptocurrencyServicesApiGateway"
 
+
+echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
+echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_HOST_TEST}"
+
+
 if [ ${KUBE_ENV} == "" ]
 then
     mongoHost="ds113122.mlab.com"
