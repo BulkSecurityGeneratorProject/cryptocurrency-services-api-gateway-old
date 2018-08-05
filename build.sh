@@ -2,14 +2,11 @@
 
 buildEnv=$1
 mavenProfile=$2
+mongoProdTestUserPass=$3
 
 mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
 mongoDatabase="CryptocurrencyServicesApiGateway"
-
-
-echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
-echo "MONGO_HOST_TEST: ${MONGO_HOST_TEST}"
 
 
 if [ ${KUBE_ENV} == "" ]
@@ -17,6 +14,7 @@ then
     mongoHost="ds113122.mlab.com"
     mongoPort="13122"
     mongoDatabase="cryptocurrency-services-prod-test"
+    export MONGO_PROD_TEST_USER_PASS=${mongoProdTestUserPass}
 fi
 
 case ${buildEnv} in
@@ -43,6 +41,10 @@ case ${buildEnv} in
         mvn -e -P${mavenProfile} ${SETTINGS_XML} ${MAVEN_REPO} clean verify dockerfile:build
         ;;
 esac
+
+echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
+echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
+echo "MONGO_HOST_TEST: ${MONGO_HOST_TEST}"
 
 if [ $? -eq 0 ]
 then
