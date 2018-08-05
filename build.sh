@@ -9,7 +9,7 @@ mongoDatabase="CryptocurrencyServicesApiGateway"
 
 
 echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
-echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_HOST_TEST}"
+echo "MONGO_HOST_TEST: ${MONGO_HOST_TEST}"
 
 
 if [ ${KUBE_ENV} == "" ]
