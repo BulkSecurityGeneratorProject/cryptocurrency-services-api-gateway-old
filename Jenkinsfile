@@ -6,6 +6,7 @@ pipeline {
       ORG               = 'kevinstl'
       APP_NAME          = 'cryptocurrency-services-api-gateway'
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
+      VAR_MONGO_PROD_TEST_USER_PASS = $MONGO_PROD_TEST_USER_PASS
     }
     stages {
 
@@ -27,10 +28,10 @@ pipeline {
             //sh "mvn -e -Pprod -DskipTests -s /host-home/.m2/settings.xml clean verify dockerfile:build"
             //sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
 
-            sh 'echo $MONGO_PROD_TEST_USER_PASS'
-            sh 'echo "MONGO_PROD_TEST_USER_PASS: $MONGO_PROD_TEST_USER_PASS"'
+            sh 'echo $VAR_MONGO_PROD_TEST_USER_PASS'
+            sh 'echo "VAR_MONGO_PROD_TEST_USER_PASS: $VAR_MONGO_PROD_TEST_USER_PASS"'
 
-            sh "./build-deploy.sh container prod $MONGO_PROD_TEST_USER_PASS"
+            sh "./build-deploy.sh container prod $VAR_MONGO_PROD_TEST_USER_PASS"
 
 
           }
