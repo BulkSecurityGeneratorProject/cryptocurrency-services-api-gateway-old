@@ -9,7 +9,7 @@ mongoPort="27017"
 mongoDatabase="CryptocurrencyServicesApiGateway"
 
 
-if [ ${KUBE_ENV} == "" ]
+if [[ -z ${KUBE_ENV} ]]
 then
     mongoHost="ds113122.mlab.com"
     mongoPort="13122"
