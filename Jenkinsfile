@@ -6,11 +6,13 @@ pipeline {
       ORG               = 'kevinstl'
       APP_NAME          = 'cryptocurrency-services-api-gateway'
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-      VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
     }
     stages {
 
       stage('deploy') {
+        environment {
+          VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
+        }
         steps {
           container('maven') {
             //sh "pwd"
@@ -41,11 +43,11 @@ pipeline {
       stage('push') {
         steps {
           container('maven') {
-            sh "git config remote.origin.url https://github.com/kevinstl/cryptocurrency-services-api-gateway.git"
-            sh "git config --global credential.helper store"
-            sh "jx step git credentials"
-            sh "git push origin HEAD"
-
+            //sh "git config remote.origin.url https://github.com/kevinstl/cryptocurrency-services-api-gateway.git"
+            //sh "git config --global credential.helper store"
+            //sh "jx step git credentials"
+            //sh "git push origin HEAD"
+            sh "./push.sh"
           }
         }
       }
