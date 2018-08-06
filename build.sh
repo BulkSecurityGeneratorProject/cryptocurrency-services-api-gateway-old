@@ -14,10 +14,12 @@ then
     mongoHost="ds113122.mlab.com"
     mongoPort="13122"
     mongoDatabase="cryptocurrency-services-prod-test"
-    export MONGO_PROD_TEST_USER_PASS=${mongoProdTestUserPass}
+    mongoDatabase="cryptocurrency-services-prod-test"
+    #export MONGO_PROD_TEST_USER_PASS=${mongoProdTestUserPass}
 fi
 
 echo "KUBE_ENV: ${KUBE_ENV}"
+echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
 echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
 echo "mongoHost: ${mongoHost}"
 echo "mongoPort: ${mongoPort}"
@@ -48,7 +50,6 @@ case ${buildEnv} in
         ;;
 esac
 
-echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
 echo "MONGO_HOST_TEST: ${MONGO_HOST_TEST}"
 
 if [ $? -eq 0 ]
