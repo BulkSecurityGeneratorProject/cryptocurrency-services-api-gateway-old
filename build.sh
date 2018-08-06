@@ -8,7 +8,6 @@ mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
 mongoDatabase="CryptocurrencyServicesApiGateway"
 
-echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
 
 if [ ${KUBE_ENV} == "" ]
 then
@@ -17,6 +16,12 @@ then
     mongoDatabase="cryptocurrency-services-prod-test"
     export MONGO_PROD_TEST_USER_PASS=${mongoProdTestUserPass}
 fi
+
+echo "KUBE_ENV: ${KUBE_ENV}"
+echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
+echo "mongoHost: ${mongoHost}"
+echo "mongoPort: ${mongoPort}"
+echo "mongoDatabase: ${mongoDatabase}"
 
 case ${buildEnv} in
   local)

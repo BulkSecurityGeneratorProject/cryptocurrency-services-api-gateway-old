@@ -37,9 +37,11 @@ spring:
 #            port: 27017
 #            host: ${MONGO_PROD_TEST_USER_PASS}${MONGO_HOST_TEST}
             host: ds113122.mlab.com
-            port: ${MONGO_PORT_TEST}
+#            port: ${MONGO_PORT_TEST}
+            port: 13122
 #            database: CryptocurrencyServicesApiGateway
-            database: ${MONGO_DATABASE_TEST}
+#            database: ${MONGO_DATABASE_TEST}
+            database: cryptocurrency-services-prod-test
             username: test-user
             password: password123
         elasticsearch:
