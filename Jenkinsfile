@@ -10,9 +10,9 @@ pipeline {
     stages {
 
       stage('deploy') {
-        environment {
+        //environment {
           //VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
-        }
+        //}
         steps {
           container('maven') {
             //sh "pwd"
