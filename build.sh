@@ -6,7 +6,8 @@ mongoProdTestUserPass=$3
 
 mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
-mongoDatabase="CryptocurrencyServicesApiGateway"
+#mongoDatabase="CryptocurrencyServicesApiGateway"
+mongoDatabase="cryptocurrency-services-local-test"
 
 
 if [[ -z ${KUBE_ENV} ]]
