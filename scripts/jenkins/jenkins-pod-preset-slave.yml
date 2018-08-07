@@ -7,8 +7,13 @@ spec:
     matchExpressions:
       - {key: jenkins, operator: In, values: [slave]}
   env:
-    - name: MONGO_PROD_TEST_USER_PASS
+    - name: MONGO_PROD_TEST_USER
       valueFrom:
         secretKeyRef:
           name: jenkins-secrets
-          key: mongo-prod-test-user-pass
+          key: mongo-prod-test-user
+    - name: MONGO_PROD_TEST_PASS
+      valueFrom:
+        secretKeyRef:
+          name: jenkins-secrets
+          key: mongo-prod-test-pass

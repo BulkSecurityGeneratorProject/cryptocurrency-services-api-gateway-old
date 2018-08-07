@@ -5,10 +5,9 @@ context=$1
 mongoProdTestUser=$2
 mongoProdTestPass=$3
 
-mongoProdTestUserPass=""
-
 if [[ ("${mongoProdTestUser}"!="") && ("${mongoProdTestPass}" != "") ]]
 then
+    mongoProdTestUser=`echo "${mongoProdTestUser}" | base64`
     mongoProdTestPass=`echo "${mongoProdTestPass}" | base64`
 else
     mongoProdTestUser=""
