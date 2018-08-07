@@ -19,7 +19,8 @@ then
 fi
 
 echo "KUBE_ENV: ${KUBE_ENV}"
-echo "MONGO_PROD_TEST_USER_PASS: ${MONGO_PROD_TEST_USER_PASS}"
+echo "MONGO_PROD_TEST_USER: ${MONGO_PROD_TEST_USER}"
+echo "MONGO_PROD_TEST_PASS: ${MONGO_PROD_TEST_PASS}"
 echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
 echo "mongoHost: ${mongoHost}"
 echo "mongoPort: ${mongoPort}"
