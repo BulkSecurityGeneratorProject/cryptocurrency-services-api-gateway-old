@@ -48,6 +48,7 @@ case ${buildEnv} in
         export MONGO_PORT=${mongoPort}
         export MONGO_DATABASE=${mongoDatabase}
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
+#        mvn -e -Pprod -DskipTests clean verify dockerfile:build
         mvn -e -P${mavenProfile} ${SETTINGS_XML} ${MAVEN_REPO} clean verify dockerfile:build
         ;;
 esac
