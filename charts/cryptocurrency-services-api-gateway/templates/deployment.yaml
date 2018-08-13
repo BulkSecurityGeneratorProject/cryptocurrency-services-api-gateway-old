@@ -1,43 +1,62 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}
+  name: {{ .Release.Name }}-deployment
   labels:
-    draft: {{ default "draft-app" .Values.draft }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+   app: {{ template "fullname" . }}
+   chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+   release: "{{ .Release.Name }}"
+   heritage: "{{ .Release.Service }}"
 spec:
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
-        draft: {{ default "draft-app" .Values.draft }}
         app: {{ template "fullname" . }}
-{{- if .Values.podAnnotations }}
-      annotations:
-{{ toYaml .Values.podAnnotations | indent 8 }}
-{{- end }}
     spec:
+#      securityContext:
+#        runAsUser: 1001
+#        fsGroup: 1001
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod,swagger"
+        - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+          value: "http://admin:{{ .Values.security.adminPassword }}@jhipster-registry-service.default.svc.cluster.local:8761/eureka"
+        - name: SPRING_CLOUD_CONFIG_URI
+          value: "http://admin:{{ .Values.security.adminPassword }}@jhipster-registry-service.default.svc.cluster.local:8761/config"
+        - name: SPRING_DATA_MONGODB_URI
+#          value: "mongodb://gateway-db-mongodb.default.svc.cluster.local:27017"
+#          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
+#          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
+#          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
+          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
+        - name: SPRING_DATA_MONGODB_DATABASE
+          value: "gateway"
+        - name: JHIPSTER_SLEEP
+          value: "30"
+        - name: SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES
+          value: "elastisearch-service.default.svc.cluster.local:9300"
         ports:
-        - containerPort: {{ .Values.service.internalPort }}
+        - name: internalport
+          containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
           httpGet:
-            path: {{ .Values.probePath }}
+            path: /
             port: {{ .Values.service.internalPort }}
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-          successThreshold: {{ .Values.livenessProbe.successThreshold }}
-          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          initialDelaySeconds: 180
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 10
         readinessProbe:
           httpGet:
-            path: {{ .Values.probePath }}
+            path: /
             port: {{ .Values.service.internalPort }}
-          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-          successThreshold: {{ .Values.readinessProbe.successThreshold }}
-          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 1
         resources:
 {{ toYaml .Values.resources | indent 12 }}
-      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}

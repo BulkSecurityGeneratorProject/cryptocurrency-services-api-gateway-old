@@ -1,34 +1,25 @@
-# Default values for Maven projects.
+# Default values for mean-k8s.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: draft
-  tag: dev
-  pullPolicy: IfNotPresent
+#  repository: gcr.io/cryptocurrencyservices-197520/cryptocurrency-services-api-gateway
+  repository: minikube/cryptocurrency-services-api-gateway
+  tag: 0.1.1aa
+#  pullPolicy: Always
+  pullPolicy: Never
 service:
   name: cryptocurrency-services-api-gateway
-  type: ClusterIP
-  externalPort: 80
+  type: NodePort
+  externalPort: 8080
   internalPort: 8080
-  annotations:
-    fabric8.io/expose: "true"
-    fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
-resources:
-  limits:
-    cpu: 500m
-    memory: 512Mi
-  requests:
-    cpu: 400m
-    memory: 512Mi
-probePath: /health
-livenessProbe:
-  initialDelaySeconds: 60
-  periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
-readinessProbe:
-  periodSeconds: 10
-  successThreshold: 1
-  timeoutSeconds: 1
-terminationGracePeriodSeconds: 10
+security:
+    adminPassword: admin
+#resources:
+##  limits:
+##    cpu: 100m
+##    memory: 128Mi
+#  requests:
+#    cpu: 100m
+#    memory: 1024Mi
+
