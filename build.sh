@@ -3,13 +3,13 @@
 buildEnv=$1
 mavenProfile=$2
 mavenCommand=$3
+skipTests=$4
 
 mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
 #mongoDatabase="CryptocurrencyServicesApiGateway"
 mongoDatabase="cryptocurrency-services-local-test"
 
-dockerRepo="minikube"
 
 if [[ -z ${KUBE_ENV} ]]
 then
@@ -17,7 +17,6 @@ then
     mongoPort="13122"
     mongoDatabase="cryptocurrency-services-prod-test"
     mongoDatabase="cryptocurrency-services-prod-test"
-    dockerRepo="minikube"
 fi
 
 if [[ -z ${mavenCommand} ]]
@@ -32,7 +31,6 @@ echo "MONGO_PROD_TEST_PASS: ${MONGO_PROD_TEST_PASS}"
 echo "mongoHost: ${mongoHost}"
 echo "mongoPort: ${mongoPort}"
 echo "mongoDatabase: ${mongoDatabase}"
-echo "dockerRepo: ${dockerRepo}"
 
 case ${buildEnv} in
   local)
@@ -44,7 +42,7 @@ case ${buildEnv} in
         export MONGO_HOST=${mongoHost}
         export MONGO_PORT=${mongoPort}
         export MONGO_DATABASE=${mongoDatabase}
-        mvn -e -P${mavenProfile},${buildEnv} clean ${mavenCommand} dockerfile:build
+        mvn -e -P${mavenProfile},${buildEnv} ${skipTests} clean ${mavenCommand} dockerfile:build
         ;;
   container)
         echo "build container"
@@ -56,7 +54,7 @@ case ${buildEnv} in
         export MONGO_DATABASE=${mongoDatabase}
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
-        mvn -e -P${mavenProfile} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} dockerfile:build
+        mvn -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} dockerfile:build
         ;;
 esac
 

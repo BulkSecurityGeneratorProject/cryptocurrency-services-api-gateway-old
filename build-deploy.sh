@@ -3,6 +3,7 @@
 buildEnv=$1
 mavenProfile=$2
 mavenCommand=$3
+skipTests=$4
 
 ./build.sh ${buildEnv} ${mavenProfile} ${mavenCommand}
 
