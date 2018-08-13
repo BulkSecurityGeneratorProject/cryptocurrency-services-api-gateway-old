@@ -15,26 +15,9 @@ pipeline {
         //}
         steps {
           container('maven') {
-            //sh "pwd"
-            //sh "whoami"
-            //sh "curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -"
-            //sh "yum install -y nodejs"
-            //sh "curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo"
-            //sh "yum install -y yarn"
-            //sh "yarn install"
-            //sh "npm install -g n"
-            //sh "n 8.10.0"
-            //sh "npm install -g npm@5.10.0"
-            //sh "npm install -g yarn@1.5.1"
-            //sh "ls -al"
-            //sh "mvn -e -Pprod -DskipTests -s /host-home/.m2/settings.xml clean verify dockerfile:build"
-            //sh "kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api"
 
-            //sh 'echo $VAR_MONGO_PROD_TEST_USER_PASS'
-            //sh 'echo "VAR_MONGO_PROD_TEST_USER_PASS: $VAR_MONGO_PROD_TEST_USER_PASS"'
 
-            //sh "./build-deploy.sh container prod $VAR_MONGO_PROD_TEST_USER_PASS"
-            sh "./build-deploy.sh container prod"
+            sh "./build-deploy.sh container prod verify"
 
 
           }
@@ -101,7 +84,8 @@ pipeline {
             }
           }
           container('maven') {
-            sh 'mvn clean deploy'
+            //sh 'mvn clean deploy'
+            sh "./build-deploy.sh container prod deploy"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 

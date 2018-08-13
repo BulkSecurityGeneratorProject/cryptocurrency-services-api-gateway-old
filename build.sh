@@ -2,7 +2,7 @@
 
 buildEnv=$1
 mavenProfile=$2
-mongoProdTestUserPass=$3
+mavenCommand=$3
 
 mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
@@ -17,14 +17,18 @@ then
     mongoPort="13122"
     mongoDatabase="cryptocurrency-services-prod-test"
     mongoDatabase="cryptocurrency-services-prod-test"
-    #export MONGO_PROD_TEST_USER_PASS=${mongoProdTestUserPass}
     dockerRepo="minikube"
 fi
+
+if [[ -z ${mavenCommand} ]]
+then
+    mavenCommand="install"
+fi
+
 
 echo "KUBE_ENV: ${KUBE_ENV}"
 echo "MONGO_PROD_TEST_USER: ${MONGO_PROD_TEST_USER}"
 echo "MONGO_PROD_TEST_PASS: ${MONGO_PROD_TEST_PASS}"
-echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
 echo "mongoHost: ${mongoHost}"
 echo "mongoPort: ${mongoPort}"
 echo "mongoDatabase: ${mongoDatabase}"
@@ -40,7 +44,7 @@ case ${buildEnv} in
         export MONGO_HOST=${mongoHost}
         export MONGO_PORT=${mongoPort}
         export MONGO_DATABASE=${mongoDatabase}
-        mvn -e -P${mavenProfile},${buildEnv} clean install dockerfile:build
+        mvn -e -P${mavenProfile},${buildEnv} clean ${mavenCommand} dockerfile:build
         ;;
   container)
         echo "build container"
@@ -52,7 +56,7 @@ case ${buildEnv} in
         export MONGO_DATABASE=${mongoDatabase}
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
-        mvn -e -P${mavenProfile} ${SETTINGS_XML} ${MAVEN_REPO} clean verify dockerfile:build
+        mvn -e -P${mavenProfile} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} dockerfile:build
         ;;
 esac
 

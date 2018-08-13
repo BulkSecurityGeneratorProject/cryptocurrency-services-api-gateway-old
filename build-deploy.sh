@@ -2,8 +2,9 @@
 
 buildEnv=$1
 mavenProfile=$2
+mavenCommand=$3
 
-./build.sh ${buildEnv} ${mavenProfile}
+./build.sh ${buildEnv} ${mavenProfile} ${mavenCommand}
 
 ./deploy.sh
 
