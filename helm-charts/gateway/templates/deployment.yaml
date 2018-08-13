@@ -32,6 +32,7 @@ spec:
 #          value: "mongodb://gateway-db-mongodb.default.svc.cluster.local:27017"
 #          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
 #          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
+#          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
           value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
         - name: SPRING_DATA_MONGODB_DATABASE
           value: "gateway"

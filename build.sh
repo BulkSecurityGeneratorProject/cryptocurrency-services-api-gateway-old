@@ -9,6 +9,7 @@ mongoPort="27017"
 #mongoDatabase="CryptocurrencyServicesApiGateway"
 mongoDatabase="cryptocurrency-services-local-test"
 
+dockerRepo="minikube"
 
 if [[ -z ${KUBE_ENV} ]]
 then
@@ -17,6 +18,7 @@ then
     mongoDatabase="cryptocurrency-services-prod-test"
     mongoDatabase="cryptocurrency-services-prod-test"
     #export MONGO_PROD_TEST_USER_PASS=${mongoProdTestUserPass}
+    dockerRepo="minikube"
 fi
 
 echo "KUBE_ENV: ${KUBE_ENV}"
@@ -26,6 +28,7 @@ echo "mongoProdTestUserPass: ${mongoProdTestUserPass}"
 echo "mongoHost: ${mongoHost}"
 echo "mongoPort: ${mongoPort}"
 echo "mongoDatabase: ${mongoDatabase}"
+echo "dockerRepo: ${dockerRepo}"
 
 case ${buildEnv} in
   local)

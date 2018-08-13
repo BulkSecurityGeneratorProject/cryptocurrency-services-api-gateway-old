@@ -76,6 +76,8 @@
 
         <!-- jhipster-needle-maven-property -->
         <docker.repo>minikube</docker.repo>
+        <!--<docker.repo>${docker.repo}</docker.repo>-->
+        <!--<docker.repo>${docker.repo}</docker.repo>-->
 
         <!--<mongodb.version>3.6.4</mongodb.version>-->
 
@@ -692,6 +694,20 @@
                 </dependency>
             </dependencies>
         </profile>
+
+        <profile>
+            <id>ci-prod</id>
+            <activation>
+                <property>
+                    <name>env.DOCKER_REGISTRY</name>
+                </property>
+            </activation>
+            <properties>
+                <!-- Override only if necessary -->
+                <docker.repo>${env.DOCKER_REGISTRY}</docker.repo>
+            </properties>
+        </profile>
+
         <profile>
             <id>no-liquibase</id>
             <properties>
