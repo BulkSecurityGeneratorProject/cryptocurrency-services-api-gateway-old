@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: cryptocurrency-services-api-gateway
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: masternodes-online-supplement-ip
+    kubernetes.io/ingress.global-static-ip-name: cryptocurrency-services-api-gateway
   labels:
     app: cryptocurrency-services-api-gateway
 spec:
