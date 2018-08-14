@@ -48,9 +48,10 @@ pipeline {
         steps {
           container('maven') {
             sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
-            sh "mvn install"
-            sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
+            //sh "mvn install"
+            sh "./build.sh container prod verify"
 
+            sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
@@ -85,7 +86,7 @@ pipeline {
           }
           container('maven') {
             //sh 'mvn clean deploy'
-            sh "./build.sh container prod deploy -DskipTests"
+            sh "./build.sh container prod package -DskipTests"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
