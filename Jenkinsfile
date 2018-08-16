@@ -49,7 +49,8 @@ pipeline {
           container('maven') {
             sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
             //sh "mvn install"
-            sh "./build.sh container prod verify"
+            //sh "./build.sh container prod verify"
+            sh "./build.sh container prod package"
 
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
@@ -86,7 +87,8 @@ pipeline {
           }
           container('maven') {
             //sh 'mvn clean deploy'
-            sh "./build.sh container prod verify -DskipTests"
+            //sh "./build.sh container prod verify -DskipTests"
+            sh "./build.sh container prod package -DskipTests"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
