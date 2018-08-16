@@ -9,6 +9,7 @@ mongoHost="gateway-db-mongodb.default.svc.cluster.local"
 mongoPort="27017"
 #mongoDatabase="CryptocurrencyServicesApiGateway"
 mongoDatabase="cryptocurrency-services-local-test"
+dockerFileBuild="dockerfile:build"
 
 
 if [[ -z ${KUBE_ENV} ]]
@@ -16,7 +17,7 @@ then
     mongoHost="ds113122.mlab.com"
     mongoPort="13122"
     mongoDatabase="cryptocurrency-services-prod-test"
-    mongoDatabase="cryptocurrency-services-prod-test"
+    dockerFileBuild=""
 fi
 
 if [[ -z ${mavenCommand} ]]
@@ -42,7 +43,7 @@ case ${buildEnv} in
         export MONGO_HOST=${mongoHost}
         export MONGO_PORT=${mongoPort}
         export MONGO_DATABASE=${mongoDatabase}
-        mvn -e -P${mavenProfile},${buildEnv} ${skipTests} clean ${mavenCommand} dockerfile:build
+        mvn -e -P${mavenProfile},${buildEnv} ${skipTests} clean ${mavenCommand} ${dockerFileBuild}
         ;;
   container)
         echo "build container"
@@ -54,7 +55,7 @@ case ${buildEnv} in
         export MONGO_DATABASE=${mongoDatabase}
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
-        mvn -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} dockerfile:build
+        mvn -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
         ;;
 esac
 
