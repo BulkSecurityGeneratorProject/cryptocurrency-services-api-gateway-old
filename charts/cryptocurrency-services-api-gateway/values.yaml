@@ -7,7 +7,8 @@ image:
   repository: minikube/cryptocurrency-services-api-gateway
   tag: 0.1.1aa
 #  pullPolicy: Always
-  pullPolicy: Never
+#  pullPolicy: Never
+  pullPolicy: IfNotPresent
 service:
   name: cryptocurrency-services-api-gateway
   type: NodePort
