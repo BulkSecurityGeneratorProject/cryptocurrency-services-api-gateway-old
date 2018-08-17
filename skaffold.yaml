@@ -30,3 +30,4 @@ profiles:
         setValueTemplates:
           image.repository: "{{.DOCKER_REGISTRY}}/kevinstl/cryptocurrency-services-api-gateway"
           image.tag: "{{.TAG}}"
+          image.pullPolicy: IfNotPresent
