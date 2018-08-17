@@ -30,10 +30,14 @@ spec:
           value: "http://admin:{{ .Values.security.adminPassword }}@jhipster-registry-service.default.svc.cluster.local:8761/config"
         - name: SPRING_DATA_MONGODB_URI
 #          value: "mongodb://gateway-db-mongodb.default.svc.cluster.local:27017"
+        #This works for local:
 #          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
-#          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
-#          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
-          value: "mongodb://admin:admin@gateway-db-mongodb.default.svc.cluster.local:27017"
+
+          valueFrom:
+            secretKeyRef:
+              name: jenkins-secrets
+              key: spring-data-mongodb-uri
+
         - name: SPRING_DATA_MONGODB_DATABASE
           value: "gateway"
         - name: JHIPSTER_SLEEP
