@@ -25,9 +25,23 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: "prod,swagger"
         - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
-          value: "http://admin:{{ .Values.security.adminPassword }}@jhipster-registry-service.default.svc.cluster.local:8761/eureka"
+        #This works for local:
+#          value: "http://admin:{{ .Values.security.adminPassword }}@jhipster-registry-service.default.svc.cluster.local:8761/eureka"
+
+          valueFrom:
+            secretKeyRef:
+              name: jenkins-secrets
+              key: eureka-client-seivce-url-defaultzone
+
         - name: SPRING_CLOUD_CONFIG_URI
-          value: "http://admin:{{ .Values.security.adminPassword }}@jhipster-registry-service.default.svc.cluster.local:8761/config"
+        #This works for local:
+#          value: "http://admin:{{ .Values.security.adminPassword }}@jhipster-registry-service.default.svc.cluster.local:8761/config"
+
+          valueFrom:
+            secretKeyRef:
+              name: jenkins-secrets
+              key: spring-cloud-config-uri
+
         - name: SPRING_DATA_MONGODB_URI
 #          value: "mongodb://gateway-db-mongodb.default.svc.cluster.local:27017"
         #This works for local:
