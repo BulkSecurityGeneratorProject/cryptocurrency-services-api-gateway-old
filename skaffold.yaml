@@ -6,8 +6,8 @@ build:
       template: "{{.DOCKER_REGISTRY}}/kevinstl/cryptocurrency-services-api-gateway:{{.VERSION}}"
   artifacts:
   - imageName: cryptocurrency-services-api-gateway
-    workspace: .
-#    workspace: ./target
+#    workspace: .
+    workspace: ./target
     docker: {}
   local: {}
 deploy:
