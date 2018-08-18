@@ -53,7 +53,8 @@ spec:
               key: spring-data-mongodb-uri
 
         - name: SPRING_DATA_MONGODB_DATABASE
-          value: "gateway"
+#          value: "gateway"
+          value: "cryptocurrency-services-prod"
         - name: JHIPSTER_SLEEP
           value: "30"
         - name: SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES

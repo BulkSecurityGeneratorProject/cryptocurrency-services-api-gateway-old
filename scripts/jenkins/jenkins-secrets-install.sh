@@ -7,14 +7,18 @@ mongoProdTestUser=$3
 mongoProdTestPass=$4
 adminUser=$5
 adminPass=$6
+mongoAddress=$7
+
+echo "mongodb://${adminUser}:${adminPass}@${mongoAddress}"
+
 
 if [[ ("${mongoProdTestUser}"!="") && ("${mongoProdTestPass}" != "") ]]
 then
     mongoProdTestUser=`echo -n "${mongoProdTestUser}" | base64`
     mongoProdTestPass=`echo -n "${mongoProdTestPass}" | base64`
-    eurekaClientServiceUrlDefaultzone=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.default.svc.cluster.local:8761/eureka" | base64`
-    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.default.svc.cluster.local:8761/config" | base64`
-    springDataMongodbUri=`echo -n "mongodb://${adminUser}:${adminPass}@gateway-db-mongodb.default.svc.cluster.local:27017" | base64`
+    eurekaClientServiceUrlDefaultzone=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.${namespace}.svc.cluster.local:8761/eureka" | base64`
+    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.${namespace}.svc.cluster.local:8761/config" | base64`
+    springDataMongodbUri=`echo -n "mongodb://${adminUser}:${adminPass}@${mongoAddress}" | base64`
 else
     mongoProdTestUser=""
     mongoProdTestPass=""
