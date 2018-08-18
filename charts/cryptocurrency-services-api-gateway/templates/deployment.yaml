@@ -58,7 +58,8 @@ spec:
         - name: JHIPSTER_SLEEP
           value: "30"
         - name: SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES
-          value: "elastisearch-service.default.svc.cluster.local:9300"
+#          value: "elastisearch-service.default.svc.cluster.local:9300"
+          value: "elastisearch-service.jx-staging.svc.cluster.local:9300"
         ports:
         - name: internalport
           containerPort: {{ .Values.service.internalPort }}
