@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api
+#kubectl --namespace default delete pods -l app=cryptocurrency-services-api-gateway-cryptocurrency-services-api
 
 
 if [ $? -eq 0 ]

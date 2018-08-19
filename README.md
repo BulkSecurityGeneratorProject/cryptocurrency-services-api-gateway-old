@@ -22,3 +22,4 @@ SecretName	jenkins-secrets
 SecretKey	mongo-prod-test-pass
 
 
+jx promote cryptocurrency-services-api-gateway --version 0.0.23 --env production
