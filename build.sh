@@ -43,6 +43,7 @@ case ${buildEnv} in
         export MONGO_HOST=${mongoHost}
         export MONGO_PORT=${mongoPort}
         export MONGO_DATABASE=${mongoDatabase}
+        echo "mvn args: -e -P${mavenProfile},${buildEnv} ${skipTests} clean ${mavenCommand} ${dockerFileBuild}"
         mvn -e -P${mavenProfile},${buildEnv} ${skipTests} clean ${mavenCommand} ${dockerFileBuild}
         ;;
   container)
@@ -55,15 +56,8 @@ case ${buildEnv} in
         export MONGO_DATABASE=${mongoDatabase}
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
+        echo "mvn args: -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}"
         mvn -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
-
-if [ $? -eq 0 ]
-then
-  echo "Build Success"
-else
-  echo "Build Error" >&2
-fi
-
         ;;
 esac
 
@@ -77,4 +71,5 @@ else
 fi
 
 
+sleep 1000000
 
