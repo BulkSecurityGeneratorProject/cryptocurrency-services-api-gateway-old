@@ -59,7 +59,7 @@ case ${buildEnv} in
         ;;
 esac
 
-echo "MONGO_HOST_TEST: ${MONGO_HOST_TEST}"
+#echo "MONGO_HOST_TEST: ${MONGO_HOST_TEST}"
 
 if [ $? -eq 0 ]
 then
