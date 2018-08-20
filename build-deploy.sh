@@ -5,7 +5,7 @@ mavenProfile=$2
 mavenCommand=$3
 skipTests=$4
 
-./build.sh ${buildEnv} ${mavenProfile} ${mavenCommand}
+./build.sh ${buildEnv} ${mavenProfile} ${mavenCommand} ${skipTests}
 
 ./deploy.sh
 
