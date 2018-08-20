@@ -16,7 +16,7 @@ pipeline {
         steps {
           container('maven') {
 
-
+            sh "ls -al"
             sh "./build-deploy.sh container prod verify"
 
 
