@@ -56,6 +56,14 @@ case ${buildEnv} in
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
         mvn -e -X -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
+
+if [ $? -eq 0 ]
+then
+  echo "Build Success"
+else
+  echo "Build Error" >&2
+fi
+
         ;;
 esac
 
