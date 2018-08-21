@@ -4,7 +4,7 @@
 
     <groupId>com.cryptocurrencyservices.apigateway</groupId>
     <artifactId>cryptocurrency-services-api-gateway</artifactId>
-    <version>0.0.26</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Cryptocurrency Services Api Gateway</name>
 
