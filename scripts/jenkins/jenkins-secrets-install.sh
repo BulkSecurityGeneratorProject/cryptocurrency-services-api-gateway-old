@@ -3,8 +3,10 @@
 
 context=$1
 namespace=$2
+#This is the test user/password
 mongoProdTestUser=$3
 mongoProdTestPass=$4
+#This is the app user/password
 adminUser=$5
 adminPass=$6
 mongoAddress=$7
@@ -17,9 +19,11 @@ then
     mongoProdTestUser=`echo -n "${mongoProdTestUser}" | base64`
     mongoProdTestPass=`echo -n "${mongoProdTestPass}" | base64`
 #    eurekaClientServiceUrlDefaultzone=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.${namespace}.svc.cluster.local:8761/eureka" | base64`
-    eurekaClientServiceUrlDefaultzone=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service:8761/eureka" | base64`
+#    eurekaClientServiceUrlDefaultzone=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service:8761/eureka" | base64`
+    eurekaClientServiceUrlDefaultzone=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.cryptocurrency-services.svc.cluster.local:8761/eureka" | base64`
 #    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.${namespace}.svc.cluster.local:8761/config" | base64`
-    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service:8761/config" | base64`
+#    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service:8761/config" | base64`
+    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.cryptocurrency-services.svc.cluster.local:8761/config" | base64`
     springDataMongodbUri=`echo -n "mongodb://${adminUser}:${adminPass}@${mongoAddress}" | base64`
 else
     mongoProdTestUser=""
