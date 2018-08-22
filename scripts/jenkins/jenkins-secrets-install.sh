@@ -26,6 +26,7 @@ then
 #    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service:8761/config" | base64`
     springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.cryptocurrency-services.svc.cluster.local:8761/config" | base64`
     springDataMongodbUri=`echo -n "mongodb://${adminUser}:${adminPass}@${mongoAddress}" | base64`
+#    springDataMongodbUri=`echo -n "mongodb://${mongoAddress}" | base64`
 else
     mongoProdTestUser=""
     mongoProdTestPass=""

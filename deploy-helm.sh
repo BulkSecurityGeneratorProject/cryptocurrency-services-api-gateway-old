@@ -11,3 +11,6 @@ then
 else
   echo "Deploy Error" >&2
 fi
+
+
+#./deploy-helm.sh cryptocurrency-services-local-test
