@@ -31,7 +31,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: jenkins-secrets
-              key: eureka-client-seivce-url-defaultzone
+              key: eureka-client-service-url-defaultzone
 
         - name: SPRING_CLOUD_CONFIG_URI
         #This works for local:
@@ -54,14 +54,16 @@ spec:
 
         - name: SPRING_DATA_MONGODB_DATABASE
 #          value: "gateway"
-          value: "cryptocurrency-services-prod"
+#          value: "cryptocurrency-services-prod"
+          value: "{{ .Values.database }}"
         - name: JHIPSTER_SLEEP
           value: "30"
         - name: SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES
         #This works for local:
 #          value: "elastisearch-service.default.svc.cluster.local:9300"
 #          value: "elastisearch-service.jx-staging.svc.cluster.local:9300"
-          value: "elastisearch-service:9300"
+#          value: "elastisearch-service:9300"
+          value: "elastisearch-service.cryptocurrency-services.svc.cluster.local:9300"
         ports:
         - name: internalport
           containerPort: {{ .Values.service.internalPort }}

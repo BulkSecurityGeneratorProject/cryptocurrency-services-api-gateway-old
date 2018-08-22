@@ -16,6 +16,7 @@ service:
   internalPort: 8080
 security:
     adminPassword: admin
+database: cryptocurrency-services-prod
 #resources:
 ##  limits:
 ##    cpu: 100m

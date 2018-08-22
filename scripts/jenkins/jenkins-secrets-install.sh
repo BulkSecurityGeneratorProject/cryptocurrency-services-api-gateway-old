@@ -10,8 +10,9 @@ mongoProdTestPass=$4
 adminUser=$5
 adminPass=$6
 mongoAddress=$7
+mongoDb=$8
 
-echo "mongodb://${adminUser}:${adminPass}@${mongoAddress}"
+echo "mongodb://${adminUser}:${adminPass}@${mongoAddress}/${mongoDb}"
 
 
 if [[ ("${mongoProdTestUser}"!="") && ("${mongoProdTestPass}" != "") ]]
