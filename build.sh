@@ -57,7 +57,8 @@ case ${buildEnv} in
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
         echo "mvn args: -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}"
-        mvn -e -U -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
+#        mvn -e -U -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
+        mvn bad-stuff
         ;;
 esac
 
@@ -67,7 +68,8 @@ if [ $? -eq 0 ]
 then
   echo "Build Success"
 else
-  echo "Build Error" >&2
+#  echo "Build Error" >&2
+  echo "Build Error. error code: $?"
 fi
 
 

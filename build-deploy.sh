@@ -13,5 +13,6 @@ if [ $? -eq 0 ]
 then
   echo "Build Deploy Success"
 else
-  echo "Build Deploy Error" >&2
+#  echo "Build Deploy Error" >&2
+  echo "Build Deploy Error. error code: " $?
 fi
