@@ -64,8 +64,9 @@ spec:
         #This works for local:
 #          value: "elastisearch-service.default.svc.cluster.local:9300"
 #          value: "elastisearch-service.jx-staging.svc.cluster.local:9300"
-#          value: "elastisearch-service:9300"
-          value: "elastisearch-service.cryptocurrency-services.svc.cluster.local:9300"
+          value: "elastisearch-service:9300"
+#          value: "localhost:9300"
+#          value: "elastisearch-service.cryptocurrency-services.svc.cluster.local:9300"
         ports:
         - name: internalport
           containerPort: {{ .Values.service.internalPort }}

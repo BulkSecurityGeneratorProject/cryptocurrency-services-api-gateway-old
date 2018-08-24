@@ -2,7 +2,7 @@
 
 database=$1
 
-helm --namespace cryptocurrency-services --kube-context minikube install -n cryptocurrency-services-api-gateway --set database=${database} charts/cryptocurrency-services-api-gateway
+helm --kube-context minikube --namespace cryptocurrency-services --kube-context minikube install -n cryptocurrency-services-api-gateway --set database=${database} charts/cryptocurrency-services-api-gateway
 
 
 if [ $? -eq 0 ]
