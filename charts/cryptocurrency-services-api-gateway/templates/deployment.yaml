@@ -56,6 +56,8 @@ spec:
 #          value: "gateway"
 #          value: "cryptocurrency-services-prod"
           value: "{{ .Values.database }}"
+
+
         - name: JHIPSTER_SLEEP
           value: "30"
         - name: SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES

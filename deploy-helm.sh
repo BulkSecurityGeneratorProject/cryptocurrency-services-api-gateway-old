@@ -13,4 +13,4 @@ else
 fi
 
 
-#./deploy-helm.sh cryptocurrency-services-local-test
+#./deploy-helm.sh cryptocurrency-services-local
