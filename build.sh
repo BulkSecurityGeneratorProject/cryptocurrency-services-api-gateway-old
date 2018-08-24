@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 buildEnv=$1
 mavenProfile=$2
 mavenCommand=$3
@@ -45,6 +47,7 @@ case ${buildEnv} in
         export MONGO_DATABASE=${mongoDatabase}
         echo "mvn args: -e -P${mavenProfile},${buildEnv} ${skipTests} clean ${mavenCommand} ${dockerFileBuild}"
         mvn -e -P${mavenProfile},${buildEnv} ${skipTests} clean ${mavenCommand} ${dockerFileBuild}
+#        mvn local-bad-stuff
         ;;
   container)
         echo "build container"
@@ -57,8 +60,8 @@ case ${buildEnv} in
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
         echo "mvn args: -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}"
-#        mvn -e -U -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
-        mvn bad-stuff
+        mvn -e -U -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
+#        mvn container-bad-stuff
         ;;
 esac
 
@@ -68,8 +71,7 @@ if [ $? -eq 0 ]
 then
   echo "Build Success"
 else
-#  echo "Build Error" >&2
-  echo "Build Error. error code: $?"
+  echo "Build Error: $?"
 fi
 
 

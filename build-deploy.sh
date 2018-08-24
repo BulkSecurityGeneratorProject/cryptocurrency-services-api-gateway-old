@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 buildEnv=$1
 mavenProfile=$2
 mavenCommand=$3
@@ -13,6 +15,5 @@ if [ $? -eq 0 ]
 then
   echo "Build Deploy Success"
 else
-#  echo "Build Deploy Error" >&2
-  echo "Build Deploy Error. error code: " $?
+  echo "Build Deploy Error: $?"
 fi
