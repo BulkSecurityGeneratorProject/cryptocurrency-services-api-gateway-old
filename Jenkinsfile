@@ -28,14 +28,14 @@ pipeline {
       //  }
       //}
 
-      stage('Build And Test') {
-        steps {
-          container('maven') {
-            sh "ls -al"
-            sh "./build.sh container prod verify"
-          }
-        }
-      }
+      //stage('Build And Test') {
+      //  steps {
+      //    container('maven') {
+      //      sh "ls -al"
+      //      sh "./build.sh container prod verify"
+      //    }
+      //  }
+      //}
 
       stage('Release Feature') {
         when {
@@ -148,7 +148,10 @@ def release(branch) {
         container('maven') {
             //sh 'mvn clean deploy'
             //sh "./build.sh container prod verify -DskipTests"
-            sh "./build.sh container prod package -DskipTests"
+
+            sh "ls -al"
+            //sh "./build.sh container prod package -DskipTests"
+            sh "./build.sh container prod package
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
