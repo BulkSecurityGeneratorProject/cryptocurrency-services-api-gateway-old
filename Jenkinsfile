@@ -17,14 +17,13 @@ pipeline {
           //VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
         //}
         steps {
-          container('maven') {
-
-            sh "ls -al"
-            //sh "./build-deploy.sh container prod verify -DskipTests"
-            sh "./build.sh container prod verify"
-
-
-          }
+          //container('maven') {
+          //  sh "ls -al"
+          //  //sh "./build-deploy.sh container prod verify -DskipTests"
+          //  sh "./build.sh container prod verify"
+          //}
+          release()
+          promote()
         }
       }
 
