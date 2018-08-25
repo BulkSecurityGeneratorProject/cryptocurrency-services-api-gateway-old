@@ -22,7 +22,7 @@ pipeline {
           //  //sh "./build-deploy.sh container prod verify -DskipTests"
           //  sh "./build.sh container prod verify"
           //}
-          release()
+          release(null)
           promote()
         }
       }
@@ -73,7 +73,7 @@ pipeline {
           branch 'master'
         }
         steps {
-            release()
+            release('master')
         }
       }
       stage('Promote to Environments') {
@@ -98,14 +98,18 @@ Select Proceed or Abort to terminate the build pod"""
     }
   }
 
-def release() {
+def release(branch) {
 
         container('maven') {
             // ensure we're not on a detached head
-            sh "git checkout master"
-            sh "git config --global credential.helper store"
+            //sh "git checkout master"
 
-            sh "jx step git credentials"
+            if ($branch?.trim()) {
+                sh "git checkout $branch"
+                sh "git config --global credential.helper store"
+
+                sh "jx step git credentials"
+            }
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
