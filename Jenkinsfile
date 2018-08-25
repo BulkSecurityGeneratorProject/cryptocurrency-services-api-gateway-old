@@ -12,32 +12,49 @@ pipeline {
     }
     stages {
 
-      stage('deploy') {
-        //environment {
-          //VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
-        //}
+
+      //stage('deploy') {
+      //  //environment {
+      //    //VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
+      //  //}
+      //  steps {
+      //    //container('maven') {
+      //    //  sh "ls -al"
+      //    //  //sh "./build-deploy.sh container prod verify -DskipTests"
+      //    //  sh "./build.sh container prod verify"
+      //    //}
+      //    //release(null)
+      //    //promote()
+      //  }
+      //}
+
+      stage('Build') {
         steps {
-          //container('maven') {
-          //  sh "ls -al"
-          //  //sh "./build-deploy.sh container prod verify -DskipTests"
-          //  sh "./build.sh container prod verify"
-          //}
+          container('maven') {
+            sh "ls -al"
+            sh "./build.sh container prod verify"
+          }
+        }
+      }
+
+      stage('Release') {
+        steps {
           release(null)
+        }
+      }
+      stage('Promote') {
+        steps {
           promote()
         }
       }
 
-      //stage('push') {
-      //  steps {
-      //    container('maven') {
-      //      //sh "git config remote.origin.url https://github.com/kevinstl/cryptocurrency-services-api-gateway.git"
-      //      //sh "git config --global credential.helper store"
-      //      //sh "jx step git credentials"
-      //      //sh "git push origin HEAD"
-      //      sh "./push.sh"
-      //    }
-      //  }
-      //}
+      stage('push') {
+        steps {
+          container('maven') {
+            //sh "./push.sh"
+          }
+        }
+      }
 
       stage('CI Build and push snapshot') {
         when {
@@ -113,8 +130,9 @@ def release(branch) {
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
-            }
-            dir ('./charts/cryptocurrency-services-api-gateway') {
+        }
+
+        dir ('./charts/cryptocurrency-services-api-gateway') {
             container('maven') {
               sh "make tag"
             }
@@ -126,7 +144,6 @@ def release(branch) {
             sh "./build.sh container prod package -DskipTests"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
-
 
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
         }

@@ -574,15 +574,15 @@
 
                 <!--Uncomment the section below to build the docker image with mvn package and and push it with mvn deploy-->
 
-                <executions>
-                    <execution>
-                    <id>default</id>
-                    <goals>
-                        <goal>build</goal>
-                        <goal>push</goal>
-                    </goals>
-                    </execution>
-                </executions>
+                <!--<executions>-->
+                    <!--<execution>-->
+                    <!--<id>default</id>-->
+                    <!--<goals>-->
+                        <!--<goal>build</goal>-->
+                        <!--<goal>push</goal>-->
+                    <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
 
                 <configuration>
                     <!--<repository>gateway</repository>-->
