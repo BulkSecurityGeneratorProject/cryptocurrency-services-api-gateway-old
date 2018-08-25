@@ -104,7 +104,7 @@ def release(branch) {
             // ensure we're not on a detached head
             //sh "git checkout master"
 
-            if ($branch?.trim()) {
+            if (branch?.trim()) {
                 sh "git checkout $branch"
                 sh "git config --global credential.helper store"
 
