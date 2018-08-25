@@ -28,7 +28,7 @@ pipeline {
       //  }
       //}
 
-      stage('Build') {
+      stage('Build And Test') {
         steps {
           container('maven') {
             sh "ls -al"
@@ -37,18 +37,24 @@ pipeline {
         }
       }
 
-      stage('Release') {
+      stage('Release Feature') {
+        when {
+          branch 'feature-*'
+        }
         steps {
           release(null)
         }
       }
-      stage('Promote') {
+      stage('Promote Feature') {
+        when {
+          branch 'feature-*'
+        }
         steps {
           promote()
         }
       }
 
-      stage('push') {
+      stage('Push Local') {
         steps {
           container('maven') {
             //sh "./push.sh"
