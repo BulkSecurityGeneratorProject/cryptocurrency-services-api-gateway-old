@@ -129,10 +129,11 @@ def release(branch) {
 
             if (branch?.trim()) {
                 sh "git checkout $branch"
-                sh "git config --global credential.helper store"
-
-                sh "jx step git credentials"
             }
+
+            sh "git config --global credential.helper store"
+            sh "jx step git credentials"
+
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
