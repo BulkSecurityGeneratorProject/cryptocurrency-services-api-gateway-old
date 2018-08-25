@@ -27,17 +27,17 @@ pipeline {
         }
       }
 
-      stage('push') {
-        steps {
-          container('maven') {
-            //sh "git config remote.origin.url https://github.com/kevinstl/cryptocurrency-services-api-gateway.git"
-            //sh "git config --global credential.helper store"
-            //sh "jx step git credentials"
-            //sh "git push origin HEAD"
-            sh "./push.sh"
-          }
-        }
-      }
+      //stage('push') {
+      //  steps {
+      //    container('maven') {
+      //      //sh "git config remote.origin.url https://github.com/kevinstl/cryptocurrency-services-api-gateway.git"
+      //      //sh "git config --global credential.helper store"
+      //      //sh "jx step git credentials"
+      //      //sh "git push origin HEAD"
+      //      sh "./push.sh"
+      //    }
+      //  }
+      //}
 
       stage('CI Build and push snapshot') {
         when {
