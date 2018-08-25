@@ -59,8 +59,10 @@ case ${buildEnv} in
         export MONGO_DATABASE=${mongoDatabase}
 #        mvn -e -P${mavenProfile} -s /host-home/.m2/settings.xml -Dmaven.repo.local=/host-home/.m2/repository clean verify dockerfile:build
 #        mvn -e -Pprod -DskipTests clean verify dockerfile:build
-        echo "mvn args: -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}"
-        mvn -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
+#        echo "mvn args: -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}"
+        echo "mvn args: -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand}"
+#        mvn -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand} ${dockerFileBuild}
+        mvn -e -P${mavenProfile} ${skipTests} ${SETTINGS_XML} ${MAVEN_REPO} clean ${mavenCommand}
 #        mvn container-bad-stuff
         ;;
 esac
