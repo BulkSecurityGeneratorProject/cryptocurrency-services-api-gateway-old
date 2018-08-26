@@ -10,15 +10,19 @@ skipTests=$4
 mongoHost="gateway-db-mongodb.jx-local.svc.cluster.local"
 mongoPort="27017"
 #mongoDatabase="CryptocurrencyServicesApiGateway"
-mongoDatabase="cryptocurrency-services-local-test"
+mongoDatabase="cryptocurrency-services-local"
+mongoDatabaseTest="cryptocurrency-services-local-test"
 dockerFileBuild="dockerfile:build"
 
 
 if [[ -z ${KUBE_ENV} ]]
 then
-    mongoHost="ds113122.mlab.com"
-    mongoPort="13122"
-    mongoDatabase="cryptocurrency-services-prod-test"
+#    mongoHost="ds113122.mlab.com"
+    mongoHost="ds123562.mlab.com"
+#    mongoPort="13122"
+    mongoPort="23562"
+    mongoDatabase="cryptocurrency-services-prod"
+    mongoDatabaseTest="cryptocurrency-services-prod-test"
     dockerFileBuild=""
 fi
 
@@ -34,6 +38,7 @@ echo "MONGO_PROD_TEST_PASS: ${MONGO_PROD_TEST_PASS}"
 echo "mongoHost: ${mongoHost}"
 echo "mongoPort: ${mongoPort}"
 echo "mongoDatabase: ${mongoDatabase}"
+echo "mongoDatabaseTest: ${mongoDatabaseTest}"
 
 case ${buildEnv} in
   local)
@@ -41,7 +46,7 @@ case ${buildEnv} in
         eval $(minikube docker-env)
         export MONGO_HOST_TEST="localhost"
         export MONGO_PORT_TEST=0
-        export MONGO_DATABASE_TEST=${mongoDatabase}
+        export MONGO_DATABASE_TEST=${mongoDatabaseTest}
         export MONGO_HOST=${mongoHost}
         export MONGO_PORT=${mongoPort}
         export MONGO_DATABASE=${mongoDatabase}
@@ -53,7 +58,7 @@ case ${buildEnv} in
         echo "build container"
         export MONGO_HOST_TEST=${mongoHost}
         export MONGO_PORT_TEST=${mongoPort}
-        export MONGO_DATABASE_TEST=${mongoDatabase}
+        export MONGO_DATABASE_TEST=${mongoDatabaseTest}
         export MONGO_HOST=${mongoHost}
         export MONGO_PORT=${mongoPort}
         export MONGO_DATABASE=${mongoDatabase}
