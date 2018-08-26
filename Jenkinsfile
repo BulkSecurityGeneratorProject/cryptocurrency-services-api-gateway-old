@@ -54,7 +54,11 @@ pipeline {
 
             //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
 
-            echo "ret: ${ret}"
+            script {
+              awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
+            }
+
+            echo "awesomeVersion: ${awesomeVersion}"
 
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
@@ -221,4 +225,4 @@ def promote() {
 
 }
 
-def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
+
