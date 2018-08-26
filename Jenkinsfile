@@ -53,11 +53,10 @@ pipeline {
             //echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
 
             //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
-            BUILD_FULL = sh (
-                script: "echo hello",
-                returnStatus: true
-            ) == 0
-            echo "Build full flag: ${BUILD_FULL}"
+
+            sh 'date > outFile'
+            curDate = readFile 'outFile'
+            echo "The current date is ${curDate}"
 
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
