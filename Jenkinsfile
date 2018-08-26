@@ -54,11 +54,14 @@ pipeline {
 
             //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
 
+
             script {
-              awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
+              //awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
+              kubeEnv = sh(returnStdout: true, script: 'echo "${KUBE_ENV}"')
             }
 
-            echo "awesomeVersion: ${awesomeVersion}"
+            //echo "awesomeVersion: ${awesomeVersion}"
+            echo "kubeEnv: ${kubeEnv}"
 
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
@@ -68,13 +71,13 @@ pipeline {
                 //echo "The current date is ${curDate}"
 
               //if (ENV_KUBE_ENV?.trim()) {
-              //if (env.KUBE_ENV) {
-              //  sh 'echo local env, executing release'
-              //  release(null)
-              //}
-              //else {
-              //  sh 'echo not local env, not executing release'
-              //}
+              if (env.KUBE_ENV == 'local') {
+                sh 'echo local env, executing release'
+                release(null)
+              }
+              else {
+                sh 'echo not local env, not executing release'
+              }
             }
         }
       }
