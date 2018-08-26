@@ -44,14 +44,14 @@ pipeline {
       //  }
       //}
 
-      //stage('Release Feature') {
-      //  when {
-      //    branch 'feature-*'
-      //  }
-      //  steps {
-      //    //release(null)
-      //  }
-      //}
+      stage('Release Feature') {
+        when {
+          branch 'feature-*'
+        }
+        steps {
+          release(null)
+        }
+      }
 
       stage('Deploy Feature') {
         steps {

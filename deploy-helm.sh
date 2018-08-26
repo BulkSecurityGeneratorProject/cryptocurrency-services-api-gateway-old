@@ -5,6 +5,11 @@ namespace=$2
 imageTag=$3
 database=$4
 
+echo "context: ${context}"
+echo "namespace: ${namespace}"
+echo "imageTag: ${imageTag}"
+echo "database: ${database}"
+
 
 kubeContextArg=""
 if [[ ${context} != "" ]]
