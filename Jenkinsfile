@@ -49,7 +49,45 @@ pipeline {
           branch 'feature-*'
         }
         steps {
-          release(null)
+          //release(null)
+
+        container('maven') {
+            // ensure we're not on a detached head
+            //sh "git checkout master"
+
+            if (branch?.trim()) {
+                sh "git checkout $branch"
+            }
+
+            sh "git config --global credential.helper store"
+            sh "jx step git credentials"
+
+            // so we can retrieve the version in later steps
+            sh "echo \$(jx-release-version) > VERSION"
+            //sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
+        }
+
+        dir ('./charts/cryptocurrency-services-api-gateway') {
+            container('maven') {
+              sh "make tag"
+            }
+        }
+
+        container('maven') {
+            //sh 'mvn clean deploy'
+            //sh "./build.sh container prod verify -DskipTests"
+
+            sh "ls -al"
+
+            //sh "./build.sh container prod package -DskipTests"
+
+            //sh "./build.sh container prod package"
+
+            //sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
+
+            //sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+        }
+
         }
       }
 

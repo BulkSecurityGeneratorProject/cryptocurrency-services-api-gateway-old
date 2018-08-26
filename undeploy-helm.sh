@@ -11,6 +11,12 @@ fi
 
 helm ${kubeContextArg} del --purge cryptocurrency-services-api-gateway
 
+if [ $? -eq 0 ]
+then
+  echo "Undeploy Success"
+else
+  echo "Undeploy Error" >&2
+fi
 
 #./undeploy-helm.sh minikube
 #./undeploy-helm.sh ""
