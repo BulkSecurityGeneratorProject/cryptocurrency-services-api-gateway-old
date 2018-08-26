@@ -53,7 +53,8 @@ pipeline {
             //echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
-                def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
+                //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
+                def ret = sh(script: 'uname', returnStdout: true)
                 println ret
                 echo 'ret: ${ret}'
 
