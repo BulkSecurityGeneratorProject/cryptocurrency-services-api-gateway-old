@@ -22,7 +22,7 @@ then
 #    mongoPort="13122"
     mongoPort="23562"
     mongoDatabase="cryptocurrency-services-prod"
-    mongoDatabaseTest="cryptocurrency-services-prod-test"
+    mongoDatabaseTest="cryptocurrency-services-prod"
     dockerFileBuild=""
 fi
 
