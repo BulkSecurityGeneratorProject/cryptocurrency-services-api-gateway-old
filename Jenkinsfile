@@ -51,7 +51,7 @@ pipeline {
         }
         steps {
             container('maven') {
-              echo 'From Jenkinsfile: ENV_KUBE_ENV: ${ENV_KUBE_ENV}'
+              echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
               //if (ENV_KUBE_ENV?.trim()) {
               //if (env.KUBE_ENV) {
               //  sh 'echo local env, executing release'
@@ -60,7 +60,7 @@ pipeline {
               //else {
               //  sh 'echo not local env, not executing release'
               //}
-          }
+          //}
         }
       }
 
