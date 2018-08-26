@@ -7,7 +7,7 @@ mavenProfile=$2
 mavenCommand=$3
 skipTests=$4
 
-mongoHost="gateway-db-mongodb.cryptocurrency-services.svc.cluster.local"
+mongoHost="gateway-db-mongodb.jx-local.svc.cluster.local"
 mongoPort="27017"
 #mongoDatabase="CryptocurrencyServicesApiGateway"
 mongoDatabase="cryptocurrency-services-local-test"
