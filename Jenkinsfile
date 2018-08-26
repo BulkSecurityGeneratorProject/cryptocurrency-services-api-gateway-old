@@ -13,10 +13,13 @@ pipeline {
     stages {
 
       //stage('Build') {
+      //  steps {
       //  sh "./build.sh container prod verify"
+      //  }
       //}
 
       stage('Deploy') {
+        steps {
 
           sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
@@ -24,7 +27,7 @@ pipeline {
           sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
 
           //sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
-
+        }
       }
 
       //stage('deploy') {
