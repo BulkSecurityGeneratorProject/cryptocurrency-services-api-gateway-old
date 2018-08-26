@@ -9,10 +9,11 @@ mongoProdTestPass=$4
 #This is the app user/password
 adminUser=$5
 adminPass=$6
-mongoAddress=$7
 
-serviceAdminUser=$8
-serviceAdminPass=$9
+serviceAdminUser=$7
+serviceAdminPass=$8
+
+mongoAddress=$9
 
 mongoDb=$10
 
