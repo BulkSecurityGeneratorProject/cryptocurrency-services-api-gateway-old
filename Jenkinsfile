@@ -54,13 +54,14 @@ pipeline {
 
             //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
 
-            sh 'date > outFile'
-            curDate = readFile 'outFile'
-            echo "The current date is ${curDate}"
+
 
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
 
+                sh 'date > outFile'
+                curDate = readFile 'outFile'
+                echo "The current date is ${curDate}"
 
               //if (ENV_KUBE_ENV?.trim()) {
               //if (env.KUBE_ENV) {
