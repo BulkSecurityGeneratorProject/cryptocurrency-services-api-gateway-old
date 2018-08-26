@@ -49,8 +49,13 @@ pipeline {
           branch 'feature-*'
         }
         steps {
-          sh 'KUBE_ENV: $KUBE_ENV'
-          release(null)
+          sh 'echo From Jenkinsfile: KUBE_ENV: $KUBE_ENV'
+          if (branch?.trim()) {
+            sh 'echo local env, executing release'
+            release(null)
+          }
+          else {
+            sh 'echo not local env, not executing release'
         }
       }
 
