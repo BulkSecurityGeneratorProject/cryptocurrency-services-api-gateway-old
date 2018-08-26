@@ -56,6 +56,7 @@ pipeline {
           }
           else {
             sh 'echo not local env, not executing release'
+          }
         }
       }
 
