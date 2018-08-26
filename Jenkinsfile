@@ -9,7 +9,7 @@ pipeline {
       ORG               = 'kevinstl'
       APP_NAME          = 'cryptocurrency-services-api-gateway'
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-      ENV_KUBE_ENV      = env.KUBE_ENV
+      ENV_KUBE_ENV      = "${env.KUBE_ENV}"
     }
     stages {
 
