@@ -51,12 +51,15 @@ pipeline {
         }
         steps {
             //echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
+
+            //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
+            def ret = sh(script: 'uname', returnStdout: true)
+            println ret
+            echo 'ret: ${ret}'
+
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
-                //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
-                def ret = sh(script: 'uname', returnStdout: true)
-                println ret
-                echo 'ret: ${ret}'
+
 
               //if (ENV_KUBE_ENV?.trim()) {
               //if (env.KUBE_ENV) {
