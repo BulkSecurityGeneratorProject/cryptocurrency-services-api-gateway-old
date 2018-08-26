@@ -50,13 +50,15 @@ pipeline {
           branch 'feature-*'
         }
         steps {
-          sh 'echo From Jenkinsfile: ENV_KUBE_ENV: ${ENV_KUBE_ENV}'
-          if (ENV_KUBE_ENV?.trim()) {
-            sh 'echo local env, executing release'
-            release(null)
-          }
-          else {
-            sh 'echo not local env, not executing release'
+            container('maven') {
+              sh 'echo From Jenkinsfile: ENV_KUBE_ENV: ${ENV_KUBE_ENV}'
+              if (ENV_KUBE_ENV?.trim()) {
+                sh 'echo local env, executing release'
+                release(null)
+              }
+              else {
+                sh 'echo not local env, not executing release'
+              }
           }
         }
       }
