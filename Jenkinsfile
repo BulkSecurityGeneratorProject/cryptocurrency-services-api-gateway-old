@@ -71,7 +71,7 @@ pipeline {
                 //echo "The current date is ${curDate}"
 
               //if (ENV_KUBE_ENV?.trim()) {
-              if (env.KUBE_ENV == 'local') {
+              if (kubeEnv?.trim() == 'local') {
                 sh 'echo local env, executing release'
                 release(null)
               }
