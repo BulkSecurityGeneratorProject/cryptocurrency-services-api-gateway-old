@@ -10,7 +10,11 @@ mongoProdTestPass=$4
 adminUser=$5
 adminPass=$6
 mongoAddress=$7
-mongoDb=$8
+
+serviceAdminUser=$8
+serviceAdminPass=$9
+
+mongoDb=$10
 
 echo "mongodb://${adminUser}:${adminPass}@${mongoAddress}/${mongoDb}"
 
@@ -30,7 +34,8 @@ then
 #    springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service.cryptocurrency-services.svc.cluster.local:8761/config" | base64`
     springCloudConfigUri=`echo -n "http://${adminUser}:${adminPass}@jhipster-registry-service:8761/config" | base64`
 #    springDataMongodbUri=`echo -n "mongodb://${adminUser}:${adminPass}@${mongoAddress}" | base64`
-    springDataMongodbUri=`echo -n "mongodb://${mongoAddress}" | base64`
+#    springDataMongodbUri=`echo -n "mongodb://${mongoAddress}" | base64`
+    springDataMongodbUri=`echo -n "mongodb://${serviceAdminUser}:${serviceAdminPass}@${mongoAddress}" | base64`
 else
     mongoProdTestUser=""
     mongoProdTestPass=""
