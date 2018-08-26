@@ -54,14 +54,14 @@ pipeline {
 
             //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
 
-
+            echo ret
 
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
 
-                sh 'date > outFile'
-                curDate = readFile 'outFile'
-                echo "The current date is ${curDate}"
+                //sh 'date > outFile'
+                //curDate = readFile 'outFile'
+                //echo "The current date is ${curDate}"
 
               //if (ENV_KUBE_ENV?.trim()) {
               //if (env.KUBE_ENV) {
@@ -205,19 +205,20 @@ def release(branch) {
 
     }
 
-    def promote() {
+def promote() {
 
-        dir ('./charts/cryptocurrency-services-api-gateway') {
-            container('maven') {
-              sh 'jx step changelog --version v\$(cat ../../VERSION)'
+    dir ('./charts/cryptocurrency-services-api-gateway') {
+        container('maven') {
+          sh 'jx step changelog --version v\$(cat ../../VERSION)'
 
-              // release the helm chart
-              sh 'jx step helm release'
+          // release the helm chart
+          sh 'jx step helm release'
 
-              // promote through all 'Auto' promotion Environments
-              sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
-            }
+          // promote through all 'Auto' promotion Environments
+          sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
         }
-
     }
 
+}
+
+def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
