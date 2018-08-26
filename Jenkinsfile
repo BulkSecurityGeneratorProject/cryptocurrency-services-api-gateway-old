@@ -59,7 +59,7 @@ pipeline {
           //sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
           container('maven') {
               sh './undeploy-helm.sh "" || true'
-              sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
+              sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local-test'
           }
 
           //sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
