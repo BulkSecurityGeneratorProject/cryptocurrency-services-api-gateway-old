@@ -63,22 +63,30 @@ pipeline {
             //echo "awesomeVersion: ${awesomeVersion}"
             echo "kubeEnv: ${kubeEnv}"
 
-            container('maven') {
-                sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
+            if (kubeEnv?.trim() == 'local') {
+                sh 'echo local env, executing release'
+                release(null)
+            }
+            else {
+                sh 'echo not local env, not executing release'
+            }
+
+            //container('maven') {
+            //    sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
 
                 //sh 'date > outFile'
                 //curDate = readFile 'outFile'
                 //echo "The current date is ${curDate}"
 
               //if (ENV_KUBE_ENV?.trim()) {
-              if (kubeEnv?.trim() == 'local') {
-                sh 'echo local env, executing release'
-                release(null)
-              }
-              else {
-                sh 'echo not local env, not executing release'
-              }
-            }
+            //  if (kubeEnv?.trim() == 'local') {
+            //    sh 'echo local env, executing release'
+            //    release(null)
+            //  }
+            //  else {
+            //    sh 'echo not local env, not executing release'
+            //  }
+            //}
         }
       }
 
