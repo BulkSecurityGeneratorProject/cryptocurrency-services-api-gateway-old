@@ -54,7 +54,7 @@ pipeline {
 
             //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
 
-            echo ret
+            echo "ret: ${ret}"
 
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
