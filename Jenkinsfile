@@ -63,12 +63,14 @@ pipeline {
             //echo "awesomeVersion: ${awesomeVersion}"
             echo "kubeEnv: ${kubeEnv}"
 
-            if (kubeEnv?.trim() == 'local') {
-                sh 'echo local env, executing release'
-                release(null)
-            }
-            else {
-                sh 'echo not local env, not executing release'
+            script {
+                if (kubeEnv?.trim() == 'local') {
+                    sh 'echo local env, executing release'
+                    release(null)
+                }
+                else {
+                    sh 'echo not local env, not executing release'
+                }
             }
 
             //container('maven') {
