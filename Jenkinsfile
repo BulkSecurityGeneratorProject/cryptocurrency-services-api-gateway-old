@@ -49,6 +49,7 @@ pipeline {
           branch 'feature-*'
         }
         steps {
+          sh 'KUBE_ENV: $KUBE_ENV'
           release(null)
         }
       }
