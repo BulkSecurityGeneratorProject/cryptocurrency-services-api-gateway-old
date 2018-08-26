@@ -117,7 +117,7 @@ pipeline {
       stage('Push Local') {
         steps {
           container('maven') {
-            //sh "./push.sh"
+            sh "./push.sh"
           }
         }
       }
