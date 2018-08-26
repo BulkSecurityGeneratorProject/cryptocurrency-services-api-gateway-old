@@ -9,7 +9,7 @@ pipeline {
       ORG               = 'kevinstl'
       APP_NAME          = 'cryptocurrency-services-api-gateway'
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-      ENV_KUBE_ENV      = "${env.KUBE_ENV}"
+      //ENV_KUBE_ENV      = "${env.KUBE_ENV}"
     }
     stages {
 
@@ -50,8 +50,9 @@ pipeline {
           branch 'feature-*'
         }
         steps {
-            echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
-            //container('maven') {
+            //echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
+            container('maven') {
+                sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
               //if (ENV_KUBE_ENV?.trim()) {
               //if (env.KUBE_ENV) {
               //  sh 'echo local env, executing release'
@@ -60,7 +61,7 @@ pipeline {
               //else {
               //  sh 'echo not local env, not executing release'
               //}
-            //}
+            }
         }
       }
 
