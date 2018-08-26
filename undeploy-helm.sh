@@ -1,4 +1,16 @@
 #!/bin/bash
 
+context=$1
 
-helm --kube-context minikube del --purge cryptocurrency-services-api-gateway
+kubeContextArg=""
+if [[ ${context} != "" ]]
+then
+    kubeContextArg="--kube-context ${context}"
+fi
+
+
+helm ${kubeContextArg} del --purge cryptocurrency-services-api-gateway
+
+
+#./undeploy-helm.sh minikube
+#./undeploy-helm.sh ""
