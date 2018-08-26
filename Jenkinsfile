@@ -53,6 +53,10 @@ pipeline {
             //echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
             container('maven') {
                 sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
+                def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
+                println ret
+                echo 'ret: ${ret}'
+
               //if (ENV_KUBE_ENV?.trim()) {
               //if (env.KUBE_ENV) {
               //  sh 'echo local env, executing release'
