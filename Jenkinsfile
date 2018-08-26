@@ -50,7 +50,7 @@ pipeline {
         }
         steps {
           sh 'echo From Jenkinsfile: KUBE_ENV: $KUBE_ENV'
-          if (branch?.trim()) {
+          if (KUBE_ENV?.trim()) {
             sh 'echo local env, executing release'
             release(null)
           }
