@@ -7,7 +7,7 @@ then
     jx step git credentials
 
     git pull origin HEAD
-    git push origin HEAD
+    git push -f origin HEAD
 fi
 
 if [ $? -eq 0 ]
