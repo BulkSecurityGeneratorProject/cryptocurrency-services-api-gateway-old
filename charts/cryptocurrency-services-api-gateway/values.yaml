@@ -9,7 +9,7 @@ image:
 service:
   name: cryptocurrency-services-api-gateway
   type: ClusterIP
-  externalPort: 80
+  externalPort: 8080
   internalPort: 8080
   annotations:
     fabric8.io/expose: "true"
@@ -33,5 +33,5 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
-#terminationGracePeriodSeconds: 10
-terminationGracePeriodSeconds: 180
+terminationGracePeriodSeconds: 10
+#terminationGracePeriodSeconds: 180
