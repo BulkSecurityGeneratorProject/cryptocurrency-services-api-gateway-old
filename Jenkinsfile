@@ -1,126 +1,62 @@
 pipeline {
 
-
-
     agent {
       label "jenkins-maven"
     }
     environment {
-      ORG               = 'kevinstl'
-      APP_NAME          = 'cryptocurrency-services-api-gateway'
-      CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-      //ENV_KUBE_ENV      = "${env.KUBE_ENV}"
+        ORG               = 'kevinstl'
+        APP_NAME          = 'cryptocurrency-services-api-gateway'
+        CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     }
     stages {
 
-      //stage('Build') {
-      //  steps {
-      //  sh "./build.sh container prod verify"
-      //  }
-      //}
-
-
-
-      //stage('deploy') {
-      //  //environment {
-      //    //VAR_MONGO_PROD_TEST_USER_PASS = "$MONGO_PROD_TEST_USER_PASS"
-      //  //}
-      //  steps {
-      //    //container('maven') {
-      //    //  sh "ls -al"
-      //    //  //sh "./build-deploy.sh container prod verify -DskipTests"
-      //    //  sh "./build.sh container prod verify"
-      //    //}
-      //    //release(null)
-      //    //promote()
-      //  }
-      //}
-
-      //stage('Build And Test') {
-      //  steps {
-      //    container('maven') {
-      //      sh "ls -al"
-      //      sh "./build.sh container prod verify"
-      //    }
-      //  }
-      //}
-
-      stage('Release Feature') {
-        when {
-          branch 'feature-*'
-        }
-        steps {
-            //echo 'From Jenkinsfile: env.KUBE_ENV: ${env.KUBE_ENV}'
-
-            //def ret = sh(script: 'echo "KUBE_ENV: ${KUBE_ENV}"', returnStdout: true)
-
-
+        stage('Determine Environment') {
             script {
-              //awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
-              kubeEnv = sh(returnStdout: true, script: 'echo "${KUBE_ENV}"')
+                kubeEnv = sh(returnStdout: true, script: 'echo "${KUBE_ENV}"')
             }
-
-            //echo "awesomeVersion: ${awesomeVersion}"
             echo "kubeEnv: ${kubeEnv}"
+        }
 
-            script {
-                if (kubeEnv?.trim() == 'local') {
-                    sh 'echo local env, executing release'
-                    release(null)
+        stage('Release Local') {
+            when {
+                branch 'feature-*'
+            }
+            steps {
+
+                script {
+                    if (kubeEnv?.trim() == 'local') {
+                        sh 'echo local env, executing release'
+                        release(null)
+                    }
                 }
-                else {
-                    sh 'echo not local env, not executing release'
+
+            }
+        }
+
+        stage('Deploy Local') {
+            steps {
+                script {
+                    if (kubeEnv?.trim() == 'local') {
+                        container('maven') {
+                            sh './undeploy-helm.sh "" || true'
+                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
+                        }
+                    }
                 }
             }
-
-            //container('maven') {
-            //    sh 'echo "KUBE_ENV: ${KUBE_ENV}"'
-
-                //sh 'date > outFile'
-                //curDate = readFile 'outFile'
-                //echo "The current date is ${curDate}"
-
-              //if (ENV_KUBE_ENV?.trim()) {
-            //  if (kubeEnv?.trim() == 'local') {
-            //    sh 'echo local env, executing release'
-            //    release(null)
-            //  }
-            //  else {
-            //    sh 'echo not local env, not executing release'
-            //  }
-            //}
         }
-      }
 
-      stage('Deploy Feature') {
-        steps {
-
-          //sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
-          container('maven') {
-              sh './undeploy-helm.sh "" || true'
-              sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
-          }
-
-          //sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+        stage('Push Local') {
+            steps {
+                script {
+                    if (kubeEnv?.trim() == 'local') {
+                        container('maven') {
+                            sh "./push.sh"
+                        }
+                    }
+                }
+            }
         }
-      }
-
-      //stage('Promote Feature') {
-      //  when {
-      //    branch 'feature-*'
-      //  }
-      //  steps {
-      //    promote()
-      //  }
-      //}
-
-      stage('Push Local') {
-        steps {
-          container('maven') {
-            sh "./push.sh"
-          }
-        }
-      }
 
       stage('CI Build and push snapshot') {
         when {
@@ -151,23 +87,61 @@ pipeline {
           }
         }
       }
-      stage('Build Release') {
-        when {
-          branch 'master'
+
+        stage('Build Release Feature') {
+            when {
+                branch 'feature-*'
+            }
+            steps {
+                script {
+                    if (kubeEnv?.trim() != 'local') {
+                        release('master')
+                    }
+                }
+            }
         }
-        steps {
-            release('master')
+
+        stage('Promote to Environments Feature') {
+            when {
+                branch 'feature-*'
+            }
+            steps {
+                script {
+                    if (kubeEnv?.trim() != 'local') {
+                        promote()
+                    }
+                }
+            }
         }
-      }
-      stage('Promote to Environments') {
-        when {
-          branch 'master'
+
+        stage('Build Release Master') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    if (kubeEnv?.trim() != 'local') {
+                        release('master')
+                    }
+                }
+            }
         }
-        steps {
-          promote()
+
+        stage('Promote to Environments Master') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    if (kubeEnv?.trim() != 'local') {
+                        promote()
+                    }
+                }
+            }
         }
-      }
     }
+
+
     post {
         always {
             cleanWs()
