@@ -5,7 +5,7 @@ replicaCount: 1
 image:
 #  repository: 10.104.167.184:5000/kevinstl/cryptocurrency-services-api-gateway
   repository: 10.104.167.184:5000/kevinstl/cryptocurrency-services-api-gateway
-  tag: 0.0.17
+  tag: 0.0.19
 #  pullPolicy: Always
 #  pullPolicy: Never
   pullPolicy: IfNotPresent
