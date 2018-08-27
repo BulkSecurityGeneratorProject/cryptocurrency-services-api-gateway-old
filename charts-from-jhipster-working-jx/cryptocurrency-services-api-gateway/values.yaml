@@ -1,0 +1,27 @@
+# Default values for mean-k8s.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+#  repository: 10.104.167.184:5000/kevinstl/cryptocurrency-services-api-gateway
+  repository: 10.104.167.184:5000/kevinstl/cryptocurrency-services-api-gateway
+  tag: 0.0.17
+#  pullPolicy: Always
+#  pullPolicy: Never
+  pullPolicy: IfNotPresent
+service:
+  name: cryptocurrency-services-api-gateway
+  type: NodePort
+  externalPort: 8080
+  internalPort: 8080
+security:
+    adminPassword: admin
+database: cryptocurrency-services-prod
+#resources:
+##  limits:
+##    cpu: 100m
+##    memory: 128Mi
+#  requests:
+#    cpu: 100m
+#    memory: 1024Mi
+
