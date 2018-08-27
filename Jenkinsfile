@@ -97,7 +97,7 @@ pipeline {
             steps {
                 script {
                     if (kubeEnv?.trim() != 'local') {
-                        release('master')
+                        release(null)
                     }
                 }
             }
@@ -164,8 +164,7 @@ def release(branch) {
             //sh "git checkout master"
 
             if (branch?.trim()) {
-                sh "git fetch origin $branch"
-                sh "git checkout origin/$branch"
+                sh "git checkout $branch"
             }
 
             sh "git config --global credential.helper store"
