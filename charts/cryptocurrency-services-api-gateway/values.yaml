@@ -21,7 +21,8 @@ resources:
   requests:
     cpu: 400m
     memory: 512Mi
-probePath: /health
+#probePath: /health
+probePath: /
 livenessProbe:
   initialDelaySeconds: 180
   periodSeconds: 10
