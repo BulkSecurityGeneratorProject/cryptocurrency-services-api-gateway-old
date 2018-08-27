@@ -28,7 +28,7 @@ pipeline {
                 script {
                     if (kubeEnv?.trim() == 'local') {
                         sh 'echo local env, executing release'
-                        release(null)
+                        //release(null)
                     }
                 }
 
@@ -53,7 +53,7 @@ pipeline {
                 script {
                     if (kubeEnv?.trim() == 'local') {
                         container('maven') {
-                            sh "./push.sh"
+                            //sh "./push.sh"
                         }
                     }
                 }
