@@ -35,3 +35,4 @@ readinessProbe:
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
 #terminationGracePeriodSeconds: 180
+database: cryptocurrency-services-prod
