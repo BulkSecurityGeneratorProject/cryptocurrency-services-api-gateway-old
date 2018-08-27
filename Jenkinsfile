@@ -11,10 +11,12 @@ pipeline {
     stages {
 
         stage('Determine Environment') {
-            script {
-                kubeEnv = sh(returnStdout: true, script: 'echo "${KUBE_ENV}"')
+            steps {
+                script {
+                    kubeEnv = sh(returnStdout: true, script: 'echo "${KUBE_ENV}"')
+                }
+                echo "kubeEnv: ${kubeEnv}"
             }
-            echo "kubeEnv: ${kubeEnv}"
         }
 
         stage('Release Local') {
