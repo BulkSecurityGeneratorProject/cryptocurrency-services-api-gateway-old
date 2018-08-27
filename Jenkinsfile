@@ -165,7 +165,7 @@ def release(branch) {
 
             if (branch?.trim()) {
                 sh "git fetch origin $branch"
-                sh "git checkout $branch"
+                sh "git checkout origin/$branch"
             }
 
             sh "git config --global credential.helper store"
