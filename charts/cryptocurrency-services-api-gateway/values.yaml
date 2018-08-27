@@ -24,7 +24,7 @@ resources:
 #probePath: /health
 probePath: /
 livenessProbe:
-  initialDelaySeconds: 180
+  initialDelaySeconds: 60
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
