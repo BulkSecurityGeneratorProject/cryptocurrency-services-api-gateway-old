@@ -28,7 +28,7 @@ pipeline {
                 script {
                     if (kubeEnv?.trim() == 'local') {
                         sh 'echo local env, executing release'
-                        release(null)
+                        //release(null)
                     }
                 }
 
@@ -41,7 +41,7 @@ pipeline {
                     if (kubeEnv?.trim() == 'local') {
                         container('maven') {
                             sh './undeploy-helm.sh "" || true'
-                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
+                            //sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
                         }
                     }
                 }
