@@ -69,16 +69,15 @@ spec:
           periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
           successThreshold: {{ .Values.livenessProbe.successThreshold }}
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
-          failureThreshold: 30
+#          failureThreshold: 30
         readinessProbe:
           httpGet:
             path: {{ .Values.probePath }}
             port: {{ .Values.service.internalPort }}
-          initialDelaySeconds: 5
+#          initialDelaySeconds: 5
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
-          failureThreshold: 30
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}

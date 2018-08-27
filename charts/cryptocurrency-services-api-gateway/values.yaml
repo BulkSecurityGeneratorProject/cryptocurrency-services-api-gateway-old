@@ -24,8 +24,8 @@ service:
 #probePath: /health
 probePath: /
 livenessProbe:
-#  initialDelaySeconds: 60
-  initialDelaySeconds: 180
+  initialDelaySeconds: 60
+#  initialDelaySeconds: 180
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
@@ -33,6 +33,5 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
-terminationGracePeriodSeconds: 300
-#terminationGracePeriodSeconds: 180
+terminationGracePeriodSeconds: 10
 database: cryptocurrency-services-prod
