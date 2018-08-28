@@ -49,17 +49,7 @@ pipeline {
             }
         }
 
-        stage('Push Local') {
-            steps {
-                script {
-                    if (kubeEnv?.trim() == 'local') {
-                        container('maven') {
-                            sh "./push.sh"
-                        }
-                    }
-                }
-            }
-        }
+
 
       stage('CI Build and push snapshot') {
         when {
@@ -123,9 +113,9 @@ pipeline {
             }
             steps {
                 script {
-                    if (kubeEnv?.trim() != 'local') {
+                    //if (kubeEnv?.trim() != 'local') {
                         release('master')
-                    }
+                    //}
                 }
             }
         }
@@ -136,14 +126,25 @@ pipeline {
             }
             steps {
                 script {
-                    if (kubeEnv?.trim() != 'local') {
+                    //if (kubeEnv?.trim() != 'local') {
                         promote()
-                    }
+                    //}
                 }
             }
         }
     }
 
+    stage('Push Local') {
+        steps {
+            script {
+                if (kubeEnv?.trim() == 'local') {
+                    container('maven') {
+                        sh "./push.sh"
+                    }
+                }
+            }
+        }
+    }
 
     post {
         always {
