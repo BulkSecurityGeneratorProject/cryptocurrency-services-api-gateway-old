@@ -4,11 +4,13 @@ context=$1
 namespace=$2
 imageTag=$3
 database=$4
+serviceType=$5
 
 echo "context: ${context}"
 echo "namespace: ${namespace}"
 echo "imageTag: ${imageTag}"
 echo "database: ${database}"
+echo "serviceType: ${serviceType}"
 
 
 kubeContextArg=""
@@ -23,8 +25,14 @@ then
     namespaceArg="--namespace ${namespace}"
 fi
 
+serviceTypeArg=""
+if [[ ${serviceType} != "" ]]
+then
+    serviceTypeArg="--set service.type=${serviceType}"
+fi
 
-helm ${kubeContextArg} ${namespaceArg} install -n cryptocurrency-services-api-gateway --set database=${database} --set image.tag=${imageTag} charts/cryptocurrency-services-api-gateway
+
+helm ${kubeContextArg} ${namespaceArg} install -n cryptocurrency-services-api-gateway --set database=${database} ${serviceTypeArg} --set image.tag=${imageTag} charts/cryptocurrency-services-api-gateway
 
 
 if [ $? -eq 0 ]

@@ -19,12 +19,6 @@ pipeline {
             }
         }
 
-
-
-
-
-
-
       stage('CI Build and push snapshot') {
         when {
           branch 'PR-*'
@@ -67,6 +61,17 @@ pipeline {
             }
         }
 
+        stage('Build Release Master') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    release('master')
+                }
+            }
+        }
+
         stage('Promote to Environments Feature') {
             when {
                 branch 'feature-*'
@@ -76,17 +81,6 @@ pipeline {
                     if (kubeEnv?.trim() != 'local') {
                         promote()
                     }
-                }
-            }
-        }
-
-        stage('Build Release Master') {
-            when {
-                branch 'master'
-            }
-            steps {
-                script {
-                    release('master')
                 }
             }
         }
@@ -110,7 +104,7 @@ pipeline {
                     if (kubeEnv?.trim() == 'local') {
                         container('maven') {
                             sh './undeploy-helm.sh "" || true'
-                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
+                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local NodePort'
                             //sh './deploy-helm.sh "" jx-local 0.0.21 cryptocurrency-services-local'
                         }
                     }
