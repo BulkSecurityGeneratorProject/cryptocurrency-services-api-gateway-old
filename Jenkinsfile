@@ -19,35 +19,9 @@ pipeline {
             }
         }
 
-        stage('Release Local') {
-            when {
-                branch 'feature-*'
-            }
-            steps {
 
-                script {
-                    if (kubeEnv?.trim() == 'local') {
-                        sh 'echo local env, executing release'
-                        release(null)
-                    }
-                }
 
-            }
-        }
 
-        stage('Deploy Local') {
-            steps {
-                script {
-                    if (kubeEnv?.trim() == 'local') {
-                        container('maven') {
-                            sh './undeploy-helm.sh "" || true'
-                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
-                            //sh './deploy-helm.sh "" jx-local 0.0.21 cryptocurrency-services-local'
-                        }
-                    }
-                }
-            }
-        }
 
 
 
@@ -81,15 +55,14 @@ pipeline {
         }
       }
 
+
         stage('Build Release Feature') {
             when {
                 branch 'feature-*'
             }
             steps {
                 script {
-                    if (kubeEnv?.trim() != 'local') {
-                        release(null)
-                    }
+                    release(null)
                 }
             }
         }
@@ -113,9 +86,7 @@ pipeline {
             }
             steps {
                 script {
-                    //if (kubeEnv?.trim() != 'local') {
-                        release('master')
-                    //}
+                    release('master')
                 }
             }
         }
@@ -126,9 +97,23 @@ pipeline {
             }
             steps {
                 script {
-                    //if (kubeEnv?.trim() != 'local') {
+                    if (kubeEnv?.trim() != 'local') {
                         promote()
-                    //}
+                    }
+                }
+            }
+        }
+
+        stage('Deploy Local') {
+            steps {
+                script {
+                    if (kubeEnv?.trim() == 'local') {
+                        container('maven') {
+                            sh './undeploy-helm.sh "" || true'
+                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local'
+                            //sh './deploy-helm.sh "" jx-local 0.0.21 cryptocurrency-services-local'
+                        }
+                    }
                 }
             }
         }
