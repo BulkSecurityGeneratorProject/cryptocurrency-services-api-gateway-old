@@ -104,7 +104,7 @@ pipeline {
                     if (kubeEnv?.trim() == 'local') {
                         container('maven') {
                             sh './undeploy-helm.sh "" || true'
-                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local NodePort'
+                            sh './deploy-helm.sh "" jx-local \$(cat VERSION) cryptocurrency-services-local NodePort 30080'
                             //sh './deploy-helm.sh "" jx-local 0.0.21 cryptocurrency-services-local'
                         }
                     }

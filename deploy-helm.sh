@@ -5,12 +5,14 @@ namespace=$2
 imageTag=$3
 database=$4
 serviceType=$5
+nodePort=$6
 
 echo "context: ${context}"
 echo "namespace: ${namespace}"
 echo "imageTag: ${imageTag}"
 echo "database: ${database}"
 echo "serviceType: ${serviceType}"
+echo "nodePort: ${nodePort}"
 
 
 kubeContextArg=""
@@ -31,8 +33,14 @@ then
     serviceTypeArg="--set service.type=${serviceType}"
 fi
 
+nodePortArg=""
+if [[ ${nodePort} != "" ]]
+then
+    nodePortArg="--set service.nodePort=${nodePort}"
+fi
 
-helm ${kubeContextArg} ${namespaceArg} install -n cryptocurrency-services-api-gateway --set database=${database} ${serviceTypeArg} --set image.tag=${imageTag} charts/cryptocurrency-services-api-gateway
+
+helm ${kubeContextArg} ${namespaceArg} install -n cryptocurrency-services-api-gateway --set database=${database} ${serviceTypeArg} ${nodePortArg} --set image.tag=${imageTag} charts/cryptocurrency-services-api-gateway
 
 
 if [ $? -eq 0 ]
