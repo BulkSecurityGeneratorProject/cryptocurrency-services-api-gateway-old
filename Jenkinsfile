@@ -132,14 +132,14 @@ pipeline {
                 }
             }
         }
-    }
 
-    stage('Push Local') {
-        steps {
-            script {
-                if (kubeEnv?.trim() == 'local') {
-                    container('maven') {
-                        sh "./push.sh"
+        stage('Push Local') {
+            steps {
+                script {
+                    if (kubeEnv?.trim() == 'local') {
+                        container('maven') {
+                            sh "./push.sh"
+                        }
                     }
                 }
             }
