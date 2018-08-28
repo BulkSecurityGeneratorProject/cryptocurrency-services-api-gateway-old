@@ -209,9 +209,7 @@ def promote() {
           sh 'jx step helm release'
 
           // promote through all 'Auto' promotion Environments
-          sh 'mongoexport -h ds123562.mlab.com:23562 -d cryptocurrency-services-prod -c jhi_user -u ${MONGO_PROD_TEST_USER} -p ${MONGO_PROD_TEST_PASS} -o jhi_user.json'
           sh 'jx promote --verbose -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
-          sh 'mongoimport -h ds123562.mlab.com:23562 -d cryptocurrency-services-prod -c jhi_user -u ${MONGO_PROD_TEST_USER} -p ${MONGO_PROD_TEST_PASS} --file jhi_user.json'
         }
     }
 

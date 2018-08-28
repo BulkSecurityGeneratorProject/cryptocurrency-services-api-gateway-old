@@ -7,22 +7,23 @@ mavenProfile=$2
 mavenCommand=$3
 skipTests=$4
 
+mongoHostTest="localhost"
+mongoPortTest=0
+mongoDatabaseTest="cryptocurrency-services-local-test"
 mongoHost="gateway-db-mongodb.jx-local.svc.cluster.local"
 mongoPort="27017"
-#mongoDatabase="CryptocurrencyServicesApiGateway"
 mongoDatabase="cryptocurrency-services-local"
-mongoDatabaseTest="cryptocurrency-services-local-test"
 dockerFileBuild="dockerfile:build"
 
 
 if [[ -z ${KUBE_ENV} ]]
 then
-#    mongoHost="ds113122.mlab.com"
+    mongoHostTest="ds113122.mlab.com"
+    mongoPortTest="13122"
+    mongoDatabaseTest="cryptocurrency-services-prod-test"
     mongoHost="ds123562.mlab.com"
-#    mongoPort="13122"
     mongoPort="23562"
     mongoDatabase="cryptocurrency-services-prod"
-    mongoDatabaseTest="cryptocurrency-services-prod"
     dockerFileBuild=""
 fi
 
@@ -35,10 +36,12 @@ fi
 echo "KUBE_ENV: ${KUBE_ENV}"
 echo "MONGO_PROD_TEST_USER: ${MONGO_PROD_TEST_USER}"
 echo "MONGO_PROD_TEST_PASS: ${MONGO_PROD_TEST_PASS}"
+echo "mongoHostTest: ${mongoHostTest}"
+echo "mongoPortTest: ${mongoPortTest}"
+echo "mongoDatabaseTest: ${mongoDatabaseTest}"
 echo "mongoHost: ${mongoHost}"
 echo "mongoPort: ${mongoPort}"
 echo "mongoDatabase: ${mongoDatabase}"
-echo "mongoDatabaseTest: ${mongoDatabaseTest}"
 
 case ${buildEnv} in
   local)
@@ -56,8 +59,8 @@ case ${buildEnv} in
         ;;
   container)
         echo "build container"
-        export MONGO_HOST_TEST=${mongoHost}
-        export MONGO_PORT_TEST=${mongoPort}
+        export MONGO_HOST_TEST=${mongoHostTest}
+        export MONGO_PORT_TEST=${mongoPortTest}
         export MONGO_DATABASE_TEST=${mongoDatabaseTest}
         export MONGO_HOST=${mongoHost}
         export MONGO_PORT=${mongoPort}
