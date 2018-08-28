@@ -12,7 +12,7 @@ mongoPortTest=0
 mongoDatabaseTest="cryptocurrency-services-local-test"
 mongoHost="gateway-db-mongodb.jx-local.svc.cluster.local"
 mongoPort="27017"
-mongoDatabase="cryptocurrency-services-local"
+mongoDatabase="cryptocurrency-services-local-test"
 dockerFileBuild="dockerfile:build"
 
 
