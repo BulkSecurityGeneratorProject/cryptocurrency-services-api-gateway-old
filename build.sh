@@ -7,12 +7,12 @@ mavenProfile=$2
 mavenCommand=$3
 skipTests=$4
 
-mongoHostTest="localhost"
-mongoPortTest=0
+mongoHostTest="gateway-db-mongodb.jx-local.svc.cluster.local"
+mongoPortTest="27017"
 mongoDatabaseTest="cryptocurrency-services-local-test"
 mongoHost="gateway-db-mongodb.jx-local.svc.cluster.local"
 mongoPort="27017"
-mongoDatabase="cryptocurrency-services-local-test"
+mongoDatabase="cryptocurrency-services-local"
 dockerFileBuild="dockerfile:build"
 
 
