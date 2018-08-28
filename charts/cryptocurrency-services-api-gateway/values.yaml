@@ -10,7 +10,7 @@ service:
   name: cryptocurrency-services-api-gateway
 #  type: ClusterIP
   type: NodePort
-  externalPort: 8080
+  externalPort: 80
   internalPort: 8080
   nodePort: 30080
   annotations:
