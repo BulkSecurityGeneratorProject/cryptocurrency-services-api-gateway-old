@@ -5,11 +5,11 @@ metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
 #    kubernetes.io/ingress.global-static-ip-name: masternodes-online-supplement-ip
-    kubernetes.io/ingress.global-static-ip-name: {{ .Release.Name }}-static-ip
+    kubernetes.io/ingress.global-static-ip-name: {{ template "fullname" . }}-static-ip
   labels:
-    app: {{ .Release.Name }}
+    app: {{ template "fullname" . }}-ingress
 spec:
   backend:
-    serviceName: {{ .Release.Name }}-service
+    serviceName: {{ template "fullname" . }}-service
     servicePort: 8080
 

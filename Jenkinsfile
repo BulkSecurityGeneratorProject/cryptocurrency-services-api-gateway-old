@@ -168,9 +168,9 @@ def release(branch) {
 
             sh "ls -al"
 
-            //sh "./build.sh container prod package -DskipTests"
+            sh "./build.sh container prod package -DskipTests"
 
-            sh "./build.sh container prod package"
+            //sh "./build.sh container prod package"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
