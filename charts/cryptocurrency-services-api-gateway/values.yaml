@@ -7,10 +7,10 @@ image:
   tag: 0.0.34
   pullPolicy: IfNotPresent
 service:
-  name: cryptocurrency-services-api-gateway
+#  name: cryptocurrency-services-api-gateway
 #  type: ClusterIP
-#  type: NodePort
-  type: LoadBalancer
+  type: NodePort
+#  type: LoadBalancer
   externalPort: 80
   internalPort: 8080
 #  nodePort: 30080

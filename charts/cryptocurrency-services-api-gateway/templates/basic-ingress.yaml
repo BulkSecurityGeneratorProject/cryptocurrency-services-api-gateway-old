@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cryptocurrency-services-api-gateway
+  annotations:
+#    kubernetes.io/ingress.global-static-ip-name: masternodes-online-supplement-ip
+    kubernetes.io/ingress.global-static-ip-name: {{ .Release.Name }}-static-ip
+  labels:
+    app: cryptocurrency-services-api-gateway
+spec:
+  backend:
+    serviceName: {{ .Release.Name }}-service
+    servicePort: 8080
+
