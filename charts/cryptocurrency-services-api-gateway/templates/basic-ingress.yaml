@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
 #  name: cryptocurrency-services-api-gateway
-  name: {{ .Release.Name }}-ingress
+  name: {{ template "fullname" . }}-ingress
   annotations:
 #    kubernetes.io/ingress.global-static-ip-name: masternodes-online-supplement-ip
     kubernetes.io/ingress.global-static-ip-name: {{ template "fullname" . }}-static-ip
