@@ -11,7 +11,7 @@ service:
 #  type: ClusterIP
   type: NodePort
 #  type: LoadBalancer
-  externalPort: 80
+  externalPort: 8080
   internalPort: 8080
 #  nodePort: 30080
   annotations:
