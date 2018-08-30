@@ -8,6 +8,7 @@ metadata:
 {{- end }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    app: {{ template "fullname" . }}
 {{- if .Values.service.annotations }}
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
@@ -20,7 +21,7 @@ spec:
 {{- if .Values.service.nodePort }}
     nodePort: {{ .Values.service.nodePort }}
 {{- end }}
-    protocol: TCP
-    name: http
+#    protocol: TCP
+#    name: http
   selector:
     app: {{ template "fullname" . }}
