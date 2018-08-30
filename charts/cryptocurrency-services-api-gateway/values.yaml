@@ -15,9 +15,10 @@ service:
   externalPort: 8080
   internalPort: 8080
 #  nodePort: 30080
-#  annotations:
-#    fabric8.io/expose: "true"
-#    fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
+  annotations:
+    fabric8.io/expose: "true"
+    fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
+    fabric8.io/ingress.name: "cryptocurrency-services-api-gateway-ingress-fabric8"
 #resources:
 #  limits:
 #    cpu: 500m
