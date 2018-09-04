@@ -23,6 +23,15 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
 {{- end }}
     spec:
+
+      nodeSelector:
+        pool: cryptocurrency-services-pool-1
+      tolerations:
+        - key: cryptocurrency-services-pool-1
+          operator: Equal
+          value: "true"
+          effect: NoSchedule
+
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
