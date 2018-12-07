@@ -1,0 +1,5 @@
++ make tag
+sed -i -e "s/version:.*/version: 0.0.94/" Chart.yaml
+sed -i -e "s|repository: .*|repository: 10.3.241.166:5000\/kevinstl\/cryptocurrency-services-api-gateway|" values.yaml
+sed -i -e "s/tag: .*/tag: 0.0.94/" values.yaml
+git add --all
