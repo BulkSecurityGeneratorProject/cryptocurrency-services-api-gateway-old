@@ -177,7 +177,7 @@ def release(branch) {
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
         }
 
-    }
+}
 
 def promote() {
 

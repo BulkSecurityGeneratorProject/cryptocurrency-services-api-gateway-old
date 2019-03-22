@@ -23,7 +23,7 @@ SecretKey	mongo-prod-test-pass
 
 
 # promote to production
-jx promote cryptocurrency-services-api-gateway --version 0.0.23 --env production
+jx promote cryptocurrency-services-api-gateway --version 0.0.93 --env production
 
 
 
